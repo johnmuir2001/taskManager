@@ -34,7 +34,12 @@ class Login extends Component {
     const data = await response.json();
     const user = await fetch(`http://localhost:3005/users/${data[0].owner}`);
     const userData = await user.json();
-    this.setState({ name: userData.name, list: data, loginEmail: "", loginPassword: "" });
+    this.setState({
+      name: userData.name,
+      list: data,
+      loginEmail: "",
+      loginPassword: ""
+    });
   };
 
   handleChange = e => {
@@ -48,10 +53,23 @@ class Login extends Component {
         <h1>Log In</h1>
         <div className="logIn">
           <label>Email:</label>
-          <input type="text" name="loginEmail" value={this.state.loginEmail} onChange={this.handleChange}></input>
+          <input
+            type="text"
+            name="loginEmail"
+            value={this.state.loginEmail}
+            onChange={this.handleChange}
+          ></input>
           <label>Password:</label>
-          <input type="text" name="loginPassword" value={this.state.loginPassword} onChange={this.handleChange}></input>
-          <button className={localStorage.getItem("token") ? "active" : "inactive"} onClick={this.handleLogin}>
+          <input
+            type="text"
+            name="loginPassword"
+            value={this.state.loginPassword}
+            onChange={this.handleChange}
+          ></input>
+          <button
+            className={localStorage.getItem("token") ? "active" : "inactive"}
+            onClick={this.handleLogin}
+          >
             <Link to="/TodoPage">Log In</Link>
           </button>
           <button>
