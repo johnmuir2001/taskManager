@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/Nav";
-import Signup from "./components/Signup";
+import Nav from "./components/nav";
+import Login from "./components/Login";
+import Signup from "./components/signup";
 import Back from "./components/Back";
 import Timer from "./components/timer";
 
