@@ -1,23 +1,29 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./Components/nav";
-import Login from "./Components/login";
-import Signup from "./Components/signup";
-import Back from "./Components/return";
+import Nav from "./components/nav";
+import Login from "./components/login";
+import Signup from "./components/signup";
+import Back from "./components/return";
+import Timer from "./components/timer";
 
 function App() {
   return (
-    <Router>
-      <div className="Back">
-        <Nav />
-        <Route exact path="/" component={Back} />
-      </div>
+    <div>
+      <Router>
+        <div className="Back">
+          <Nav />
+          <Route exact path="/" component={Back} />
+        </div>
+        <div>
+          <Route path="/login" component={Login} />
+          <Route path="/signUp" component={Signup} />
+        </div>
+      </Router>
       <div>
-        <Route path="/login" component={Login} />
-        <Route path="/signUp" component={Signup} />
+        <Timer />
       </div>
-    </Router>
+    </div>
   );
 }
 
