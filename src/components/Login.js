@@ -48,32 +48,29 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="background">
-        <img src={logo} alt="logo" />
-        <h1>Log In</h1>
+      <div className="loginWrap">
+        <img className="logo" src={logo} alt="logo" />
+        <h1>Welcome</h1>
         <div className="logIn">
-          <label>Email:</label>
           <input
             type="text"
             name="loginEmail"
             value={this.state.loginEmail}
             onChange={this.handleChange}
+            placeholder="email"
           ></input>
-          <label>Password:</label>
           <input
             type="text"
             name="loginPassword"
             value={this.state.loginPassword}
             onChange={this.handleChange}
+            placeholder="password"
           ></input>
-          <button
-            className={localStorage.getItem("token") ? "active" : "inactive"}
-            onClick={this.handleLogin}
-          >
+          <button className="continue" onClick={this.handleLogin}>
             <Link to="/TodoPage">Log In</Link>
           </button>
-          <button>
-            <Link to="/signUp">Not Signed Up yet...</Link>
+          <button className="signup">
+            <Link to="/signUp">Sign Up Here...</Link>
           </button>
         </div>
         <h1>{this.state.name}</h1>
