@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/nav";
-import Login from "./components/login";
-import Signup from "./components/signup";
-import Back from "./components/return";
+import Nav from "./components/Nav";
+import Signup from "./components/Signup";
+import Back from "./components/Back";
 import Timer from "./components/timer";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
           <Route exact path="/" component={Back} />
         </div>
         <div>
-          <Route path="/login" component={Login} />
           <Route path="/signUp" component={Signup} />
         </div>
       </Router>
