@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../css/signup.css";
 import { Link } from "react-router-dom";
+import PasswordMask from "react-password-mask";
 
 class Signup extends Component {
   state = {
@@ -36,12 +37,13 @@ class Signup extends Component {
         <div className="SignUp">
           <input type="text" name="signUpName" value={this.state.signUpName} onChange={this.handleChange} placeholder="Name"></input>
           <input type="text" name="signUpEmail" value={this.state.signUpEmail} onChange={this.handleChange} placeholder="Email"></input>
-          <input
-            type="text"
+          <PasswordMask
+           className="password"
+            type="password"
             name="signUpPassword"
             value={this.state.signUpPassword}
-            onChange={this.handleChange} placeholder="Password"
-          ></input>
+            onChange={this.handleChange.bind(this)} useVendorStyles={false} placeholder="Password"
+          ></PasswordMask> 
           <button className="continue"onClick={this.handleSignUp}>
             <Link to="/TodoPage">Sign Up</Link>
           </button>
