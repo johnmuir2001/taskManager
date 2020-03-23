@@ -17,7 +17,9 @@ function App() {
       <Route path="/signUp" component={Signup} />
       <Route path="/TodoPage" component={TodoPage} />
       </div>
+      
     </Router>
+    
   );
 }
 
