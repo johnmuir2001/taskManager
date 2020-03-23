@@ -8,18 +8,20 @@ import TodoPage from "./components/TodoPage";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <div className="Back">
-          <Route exact path="/" component={Back} />
-        </div>
-        <div>
-          <Route path="/login" component={Login} />
-          <Route path="/signUp" component={Signup} />
-          <Route path="/TodoPage" component={TodoPage} />
-        </div>
-      </Router>
-    </div>
+
+    <Router>
+      <div className="Back">
+      <Route exact path="/" component={Back} />
+      </div>
+      <div> 
+      <Route path="/login" component={Login} />
+      <Route path="/signUp" component={Signup} />
+      <Route path="/TodoPage" component={TodoPage} />
+      </div>
+      
+    </Router>
+    
+
   );
 }
 
