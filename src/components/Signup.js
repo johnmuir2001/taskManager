@@ -13,7 +13,7 @@ class Signup extends Component {
   };
 
   handleSignUp = async () => {
-    const signup = await fetch("http://localhost:3005/users", {
+    const signup = await fetch("http://localhost:3010/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
