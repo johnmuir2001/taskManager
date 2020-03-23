@@ -37,7 +37,13 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <h3>timer: {ms(this.state.time)}</h3>
+        <h3>
+          timer:{" "}
+          {ms(this.state.time, {
+            colonNotation: true,
+            secondsDecimalDigits: 0
+          })}
+        </h3>
         {this.state.time === 0 ? (
           <button onClick={this.startTimer}>start</button>
         ) : null}
