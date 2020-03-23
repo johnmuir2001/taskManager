@@ -1,13 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Back from './components/Back';
-import TodoPage from './components/TodoPage';
+import Back from "./components/Back";
+import TodoPage from "./components/TodoPage";
 
 function App() {
   return (
+
     <Router>
       <div className="Back">
       <Route exact path="/" component={Back} />
@@ -20,9 +21,8 @@ function App() {
       
     </Router>
     
+
   );
 }
 
 export default App;
-
-
