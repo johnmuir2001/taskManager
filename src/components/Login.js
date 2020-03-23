@@ -13,7 +13,7 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    const login = await fetch("http://localhost:3005/users/login", {
+    const login = await fetch("http://localhost:3010/users/login", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -25,7 +25,7 @@ class Login extends Component {
     console.log(loginInfo);
     localStorage.setItem("token", loginInfo.token);
 
-    const response = await fetch("http://localhost:3005/tasks", {
+    const response = await fetch("http://localhost:3010/tasks", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${loginInfo.token}`,
@@ -33,7 +33,7 @@ class Login extends Component {
       }
     });
     const data = await response.json();
-    const user = await fetch(`http://localhost:3005/users/${data[0].owner}`);
+    const user = await fetch(`http://localhost:3010/users/${data[0].owner}`);
     const userData = await user.json();
     this.setState({
       name: userData.name,
