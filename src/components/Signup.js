@@ -34,18 +34,15 @@ class Signup extends Component {
       <div className="background">
         <h1>Sign Up</h1>
         <div className="SignUp">
-          <label>Name:</label>
-          <input type="text" name="signUpName" value={this.state.signUpName} onChange={this.handleChange}></input>
-          <label>Email:</label>
-          <input type="text" name="signUpEmail" value={this.state.signUpEmail} onChange={this.handleChange}></input>
-          <label>Password:</label>
+          <input type="text" name="signUpName" value={this.state.signUpName} onChange={this.handleChange} placeholder="Name"></input>
+          <input type="text" name="signUpEmail" value={this.state.signUpEmail} onChange={this.handleChange} placeholder="Email"></input>
           <input
             type="text"
             name="signUpPassword"
             value={this.state.signUpPassword}
-            onChange={this.handleChange}
+            onChange={this.handleChange} placeholder="Password"
           ></input>
-          <button onClick={this.handleSignUp}>
+          <button className="continue"onClick={this.handleSignUp}>
             <Link to="/TodoPage">Sign Up</Link>
           </button>
         </div>
