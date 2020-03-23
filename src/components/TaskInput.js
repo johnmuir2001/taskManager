@@ -6,6 +6,20 @@ class TaskInput extends Component {
     currentInput: ""
   };
 
+  componentDidMount = async () => {
+    const response = await fetch("http://localhost:3010/tasks", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "content-type": "application/json"
+    },
+})
+  const data = await response.json()
+  this.setState({list: data})
+  console.log(data)
+  console.log(this.state.list)
+  }
+
   addHandler = e => {
     this.setState({ currentInput: e.target.value });
   };
@@ -16,9 +30,20 @@ class TaskInput extends Component {
     if (this.state.currentInput === "") {
       return alert("Please Enter a Task");
     }
-    storeInput.push(this.state.currentInput);
+    storeInput.push({task: this.state.currentInput});
     this.setState({ input: storeInput, currentInput: "" });
     console.log("task has been added");
+
+    fetch("http://localhost:3010/tasks", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+        task: this.state.currentInput
+      })
+    })
   };
 
   enterHandler = event => {
@@ -37,8 +62,9 @@ class TaskInput extends Component {
           onChange={this.addHandler}
           onKeyPress={this.enterHandler}
         ></input>
+        <button onClick={this.submit}>+</button>
         {this.state.list.map((savedInput, index) => {
-          return <p key={index}>{savedInput}</p>;
+          return <p key={index}>{savedInput.task}</p>;
         })}
       </div>
     );
