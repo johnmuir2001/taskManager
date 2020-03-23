@@ -35,7 +35,12 @@ class Login extends Component {
     const data = await response.json();
     const user = await fetch(`http://localhost:3005/users/${data[0].owner}`);
     const userData = await user.json();
-    this.setState({ name: userData.name, list: data, loginEmail: "", loginPassword: "" });
+    this.setState({
+      name: userData.name,
+      list: data,
+      loginEmail: "",
+      loginPassword: ""
+    });
   };
 
   handleChange = e => {
