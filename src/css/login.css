@@ -42,6 +42,7 @@ input::placeholder {
     font-weight: 700;
     border-radius: 5px;
     border: 0;
+    cursor: pointer;
     background-color: #7ED857;
     color: white;
 }
@@ -56,4 +57,16 @@ a:visited {
     border: 0;
     font-size: 15px;
     border-bottom: 1px solid white;
+}
+.logInWarning{
+    color: red;
+    font-weight: 400;
+    margin: 0;
+}
+.logInPassword{
+    position: relative;
+    left: 235px;
+    top: -39px;
+    color: white;
+    background-color: #362245;
 }
