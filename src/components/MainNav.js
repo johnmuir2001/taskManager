@@ -7,7 +7,7 @@ const MainNav = () => {
     <div className="containermainNav">
       <div className="mainNav">
        <Link to="/TodoPage">To Do</Link>
-       <Link to="timer">Timer</Link>
+       <Link to="/timer">Timer</Link>
        <Link to="timesheet">Timesheet</Link>
         </div>
     </div>
