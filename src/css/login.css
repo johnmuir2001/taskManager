@@ -49,6 +49,9 @@ input::placeholder {
 .continue:hover{
     background-color: rgb(165, 241, 132);
 }
+a {
+    color: white;
+}
 a:visited {
     color: white;
 }
