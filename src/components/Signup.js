@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../css/signup.css";
 import { Link } from "react-router-dom";
+import logo from "../images/GGWgoGetWork.png";
+import PasswordMask from "react-password-mask";
 
 class Signup extends Component {
   state = {
@@ -12,7 +14,7 @@ class Signup extends Component {
   };
 
   handleSignUp = async () => {
-    const signup = await fetch("http://localhost:3005/users", {
+    const signup = await fetch("http://localhost:3010/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -32,19 +34,23 @@ class Signup extends Component {
   render() {
     return (
       <div className="background">
+        <img className="logo" src={logo} alt="logo" />
         <h1>Sign Up</h1>
         <div className="SignUp">
           <input type="text" name="signUpName" value={this.state.signUpName} onChange={this.handleChange} placeholder="Name"></input>
           <input type="text" name="signUpEmail" value={this.state.signUpEmail} onChange={this.handleChange} placeholder="Email"></input>
-          <input
-            type="text"
+          <PasswordMask
+            buttonClassName="signUpPassword"
+            type="password"
             name="signUpPassword"
             value={this.state.signUpPassword}
-            onChange={this.handleChange} placeholder="Password"
-          ></input>
-          <button className="continue"onClick={this.handleSignUp}>
-            <Link to="/TodoPage">Sign Up</Link>
-          </button>
+            onChange={this.handleChange.bind(this)} useVendorStyles={false} placeholder="Password"
+          ></PasswordMask> 
+          <Link to="/TodoPage">
+            <button className="continue"onClick={this.handleSignUp}>
+              Sign Up
+            </button>
+          </Link>
         </div>
       </div>
     );

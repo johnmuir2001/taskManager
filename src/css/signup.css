@@ -1,20 +1,16 @@
 .body{
     background-color: #362245;
 }
-
-h1{
-    color: white;
-}
-
 .SignUp{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 100px;
 }
-
-
+.logo{
+    height: auto;
+    width: 400px;
+}
 .background{
     height: 100vh;
     width: 100vw;
@@ -22,7 +18,6 @@ h1{
     flex-direction: column;
     align-items: center;
 }
-
 input{
     margin: 10px;
     padding: 10px;
@@ -33,19 +28,16 @@ input{
     border: 0;
     border-bottom: 2px solid rgba(255, 255, 255, 0.6);
 }
-
 .signup{
     background: none;
     border: 0;
     font-size: 15px;
     border-bottom: 1px solid white;
 }
-
 input::placeholder {
     color: white;
     opacity: 0.6;
 }
-
 .continue{
     margin: 30px;
     height: 40px;
@@ -63,4 +55,10 @@ input::placeholder {
 a:visited {
     color: white;
 }
-
+.signUpPassword{
+    position: relative;
+    left: 235px;
+    top: -39px;
+    color: white;
+    background-color: #362245;
+}
