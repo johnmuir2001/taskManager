@@ -13,20 +13,12 @@ class TodoPage extends Component {
     }
 
     todoButton = () => {
-        this.setState({todo: true})
-
-        if(this.state.done = true){
-            this.setState({todo: false})
-        }
+        this.setState({todo: false})
         console.log("This is your current tasks")
     }
 
     doneButton = () => {
-        this.setState({done: true})
-
-        if(this.state.todo = true){
-            this.setState({done: false})
-        }
+        this.setState({todo: true})
         console.log("These are your done tasks")
     }
 
