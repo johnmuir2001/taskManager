@@ -17,7 +17,7 @@ class Signup extends Component {
       this.setState({message: "Please enter details"})
       return
     }
-    const signup = await fetch("http://localhost:3010/users", {
+    const signup = await fetch("https://whispering-temple-37575.herokuapp.com/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
