@@ -6,36 +6,26 @@ import MainNav from '../components/MainNav';
 
 class TodoPage extends Component {
     state = {
-        todo: false,
-        done: true
+        todo: false
     }
 
     todoButton = () => {
-        this.setState({todo: true})
-
-        if(this.state.done = true){
-            this.setState({todo: false})
-        }
+        this.setState({todo: false})
         console.log("This is your current tasks")
     }
 
     doneButton = () => {
-        this.setState({done: true})
-
-        if(this.state.todo = true){
-            this.setState({done: false})
-        }
+        this.setState({todo: true})
         console.log("These are your done tasks")
     }
 
     render (){
         return (
             <div>
-                <Nav />
                 <h1>Task To Do</h1>
                 <button onClick={this.todoButton}>To Do</button>
                 <button onClick={this.doneButton}>Done</button>
-                <TaskInput todo={this.state.todo} done={this.state.done}/>
+                <TaskInput todo={this.state.todo}/>
                 <MainNav/>
             </div>
         )
