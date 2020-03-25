@@ -6,8 +6,7 @@ import MainNav from '../components/MainNav';
 
 class TodoPage extends Component {
     state = {
-        todo: false,
-        done: true
+        todo: false
     }
 
     todoButton = () => {
@@ -26,7 +25,7 @@ class TodoPage extends Component {
                 <h1>Task To Do</h1>
                 <button onClick={this.todoButton}>To Do</button>
                 <button onClick={this.doneButton}>Done</button>
-                <TaskInput todo={this.state.todo} done={this.state.done}/>
+                <TaskInput todo={this.state.todo}/>
                 <MainNav/>
             </div>
         )
