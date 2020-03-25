@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
+
 class TaskInput extends Component {
   state = {
     list: [],
     currentInput: "",
-    doneList: [],
+    doneList: []
   };
 
   componentDidMount = async () => {
-    const response = await fetch("http://localhost:3010/tasks", {
+    const response = await fetch("https://whispering-temple-37575.herokuapp.com/tasks", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -44,7 +45,7 @@ class TaskInput extends Component {
     
     console.log("task has been added");
 
-    const response = await fetch("http://localhost:3010/tasks", {
+    const response = await fetch("https://whispering-temple-37575.herokuapp.com/tasks", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -64,7 +65,6 @@ class TaskInput extends Component {
       this.submit();
     }
   };
-
   //delete task in todo
   taskDelete = (index) => {
     let storeList = [...this.state.list]
@@ -145,12 +145,11 @@ render () {
             <button onClick={() => this.doneTasks(index)} >Done</button>
             <button onClick={() => this.taskDelete(index)} >Delete</button>
           </div>
-              )
+        );
       })}
-      
     </div>
-  )
-}
+  );
+  }
 }
 
 export default TaskInput;

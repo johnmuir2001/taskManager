@@ -3,6 +3,8 @@ import "../css/signup.css";
 import { withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
+// import AwesomeComponent from "./Loading"
+
 
 class Signup extends Component {
   state = {
@@ -17,7 +19,7 @@ class Signup extends Component {
       this.setState({message: "Please enter details"})
       return
     }
-    const signup = await fetch("http://localhost:3010/users", {
+    const signup = await fetch("https://whispering-temple-37575.herokuapp.com/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -38,6 +40,10 @@ class Signup extends Component {
 
   render() {
     return (
+      <div>
+        {/* <AwesomeComponent/> */}
+      
+
       <div className="background">
         <img className="logo" src={logo} alt="logo" />
         <h1>Sign Up</h1>
@@ -56,6 +62,7 @@ class Signup extends Component {
               Sign Up
             </button>
         </div>
+      </div>
       </div>
     );
   }
