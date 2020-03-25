@@ -79,6 +79,14 @@ class TaskInput extends Component {
 
   }
 
+  startTasks = (index) => {
+    // let toDoTasks = [...this.state.list]
+
+    
+  }
+
+
+
 render () {
   return (
     <div>
@@ -100,7 +108,7 @@ render () {
         return (
           <div key={index}>
             <p>{savedInput.task}</p>
-            <button>Start</button>
+            <button  >Start</button>
             <button onClick={() => this.doneTasks(index)} >Done</button>
             <button onClick={() => this.taskDelete(index)} >Delete</button>
           </div>
