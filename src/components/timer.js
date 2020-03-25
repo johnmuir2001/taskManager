@@ -1,4 +1,5 @@
 import MainNav from '../components/MainNav';
+import "../css/timer.css"
 const React = require("react");
 const ms = require("pretty-ms");
 
@@ -37,28 +38,36 @@ class Timer extends React.Component {
   }
   render() {
     return (
-      <div>
-        <MainNav/>
-        <h3>
+  <div className="container">
+    <div className="circlebutton">
+      <div className="times">
+        <h3 >
           timer:{" "}
           {ms(this.state.time, {
             colonNotation: true,
             secondsDecimalDigits: 0
           })}
         </h3>
+        </div>
+        <div>
         {this.state.time === 0 ? (
-          <button onClick={this.startTimer}>start</button>
+          <button className="button"  onClick={this.startTimer}>start</button>
         ) : null}
         {this.state.time === 0 || this.state.isOn ? null : (
-          <button onClick={this.startTimer}>resume</button>
+          <button className="button"  onClick={this.startTimer}>resume</button>
         )}
         {this.state.time === 0 || !this.state.isOn ? null : (
-          <button onClick={this.stopTimer}>stop</button>
+          <button className="button"  onClick={this.stopTimer}>stop</button>
         )}
         {this.state.time === 0 || this.state.isOn ? null : (
-          <button onClick={this.resetTimer}>reset</button>
+          <button className="button" onClick={this.resetTimer}>reset</button>
         )}
-      </div>
+        </div>
+        </div>
+    <div className="nav">
+      <MainNav/>
+    </div>
+  </div>
     );
   }
 }
