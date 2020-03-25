@@ -1,8 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-// import ClipLoader from "react-spinners/ClipLoader";
 import BarLoader from "react-spinners/BarLoader";
-
 import FadeIn from 'react-fade-in';
 import "../css/loading.css"
 
@@ -24,9 +22,7 @@ class AwesomeComponent extends React.Component {
     setTimeout(() => {
         this.setState({ loading: false});
     }, 2000);
-}
-
-
+  }
 
   render() {
     const { loading } = this.state
@@ -37,7 +33,6 @@ class AwesomeComponent extends React.Component {
       {loading ? (
         <div className="sweet-loading">
           <BarLoader
-
             css={override}
             size={100}
             color={"#7ED857"}
