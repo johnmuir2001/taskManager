@@ -1,3 +1,4 @@
+import MainNav from '../components/MainNav';
 const React = require("react");
 const ms = require("pretty-ms");
 
@@ -37,6 +38,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
+        <MainNav/>
         <h3>
           timer:{" "}
           {ms(this.state.time, {
@@ -60,4 +62,4 @@ class Timer extends React.Component {
     );
   }
 }
-module.exports = Timer;
+export default Timer;
