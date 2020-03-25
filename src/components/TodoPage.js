@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TaskInput from './TaskInput'
-import Nav from "../components/Nav";
+
 import '../css/TodoPage.css'
 import MainNav from '../components/MainNav';
 import logo from "../images/GGWgoGetWork.png";
@@ -42,7 +42,7 @@ class TodoPage extends Component {
                 <h1>Task To Do</h1>
                 
                 <TaskInput todo={this.state.todo} done={this.state.done}/>
-                <Nav />
+                
                 <div className="mainnavcontainer">
                 <MainNav/>
                 
