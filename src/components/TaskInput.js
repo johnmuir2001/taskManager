@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 
 class TaskInput extends Component {
   state = {
     list: [],
     currentInput: "",
     doneList: [],
+    taskTimer: ""
   };
 
   componentDidMount = async () => {
@@ -81,9 +82,10 @@ class TaskInput extends Component {
   }
 
   startTasks = (index) => {
-    // let toDoTasks = [...this.state.list]
-
-    
+    let storeList = [...this.state.list]
+    let currentTask = [...this.state.taskTimer]
+    let startTask = storeList.splice(index, 1)
+    currentTask.push(startTask)
   }
 
 
@@ -109,9 +111,10 @@ render () {
         return (
           <div key={index}>
             <p>{savedInput.task}</p>
-            <button  >Start</button>
+            <Link to="/timer" taskTimer={this.state.taskTimer} ><button onClick={this.startTasks(index)} >Start</button></Link>
             <button onClick={() => this.doneTasks(index)} >Done</button>
             <button onClick={() => this.taskDelete(index)} >Delete</button>
+            {this.state.taskTimer}
           </div>
               )
       })}

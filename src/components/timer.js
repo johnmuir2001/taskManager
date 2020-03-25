@@ -39,6 +39,11 @@ class Timer extends React.Component {
     return (
       <div>
         <MainNav/>
+        <div>
+          {this.props.taskTimer.map((storeTask, index) => {
+          return <h1 key={index} >{storeTask}</h1>
+          })}
+        </div>
         <h3>
           timer:{" "}
           {ms(this.state.time, {
