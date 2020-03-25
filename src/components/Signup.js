@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../css/signup.css";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
 // import AwesomeComponent from "./Loading"
@@ -8,14 +8,17 @@ import PasswordMask from "react-password-mask";
 
 class Signup extends Component {
   state = {
-    list: [],
-
+    message: " ",
     signUpName: "",
     signUpEmail: "",
     signUpPassword: ""
   };
 
   handleSignUp = async () => {
+    if (this.state.signUpName === "" || this.state.signUpEmail === "" || this.state.signUpPassword === "") {
+      this.setState({message: "Please enter details"})
+      return
+    }
     const signup = await fetch("http://localhost:3010/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -27,6 +30,8 @@ class Signup extends Component {
     });
     const newUser = await signup.json();
     localStorage.setItem("token", newUser.token);
+
+    this.props.history.push("/TodoPage")
   };
 
   handleChange = e => {
@@ -51,12 +56,11 @@ class Signup extends Component {
             name="signUpPassword"
             value={this.state.signUpPassword}
             onChange={this.handleChange.bind(this)} useVendorStyles={false} placeholder="Password"
-          ></PasswordMask> 
-          <Link to="/TodoPage">
+          ></PasswordMask>
+          <h3 className="signUpWarning">{this.state.message}</h3>
             <button className="continue"onClick={this.handleSignUp}>
               Sign Up
             </button>
-          </Link>
         </div>
       </div>
       </div>
@@ -64,4 +68,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

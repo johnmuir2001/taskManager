@@ -55,6 +55,11 @@ input::placeholder {
 a:visited {
     color: white;
 }
+.signUpWarning{
+    color: red;
+    font-weight: 400;
+    margin: 0;
+}
 .signUpPassword{
     position: relative;
     left: 235px;
