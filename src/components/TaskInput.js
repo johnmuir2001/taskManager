@@ -3,7 +3,8 @@ import React, { Component } from "react";
 class TaskInput extends Component {
   state = {
     list: [],
-    currentInput: ""
+    currentInput: "",
+    doneList: [],
   };
 
   componentDidMount = async () => {
@@ -31,7 +32,7 @@ class TaskInput extends Component {
       return alert("Please Enter a Task");
     }
     storeInput.push({task: this.state.currentInput});
-    this.setState({ input: storeInput, currentInput: "" });
+    this.setState({ list: storeInput, currentInput: "" });
     console.log("task has been added");
 
     fetch("http://localhost:3010/tasks", {
@@ -52,23 +53,63 @@ class TaskInput extends Component {
     }
   };
 
-  render() {
-    return (
-      <div>
-        <input
-          placeholder="Enter Task Here"
-          type="text"
-          value={this.state.currentInput}
-          onChange={this.addHandler}
-          onKeyPress={this.enterHandler}
-        ></input>
-        <button onClick={this.submit}>+</button>
-        {this.state.list.map((savedInput, index) => {
-          return <p key={index}>{savedInput.task}</p>;
-        })}
-      </div>
-    );
+  taskDelete = (index) => {
+    let storeList = [...this.state.list]
+    storeList.splice(index, 1)
+    this.setState({list: storeList})
   }
+
+  doneDelete = (index) => {
+    let doneTask = [...this.state.doneList]
+    doneTask.splice(index, 1)
+    this.setState({doneList: doneTask})
+  }
+
+  doneTasks = (index) => {
+    let storeDone = [...this.state.doneList]
+    //so we need to push the task we want from the first array
+    //first we need to get it. 
+    let currentTasks = [...this.state.list]
+    let task = currentTasks.splice(index, 1)
+    //then we need to push it
+    storeDone.push(task)
+    
+    //save and run this to see if it works
+    this.setState({doneList: storeDone, list: currentTasks})
+
+  }
+
+render () {
+  return (
+    <div>
+      {this.props.todo ? null : 
+        <div>
+          <input placeholder="Enter Task Here" type="text" value={this.state.currentInput} onChange={this.addHandler} onKeyPress={this.enterHandler}></input>
+          <button onClick={this.submit}>+</button>
+        </div>}
+      {this.props.todo ? 
+      this.state.doneList.map((savedInput, index) => {
+        return (
+            <div key={index}>
+              <p>{savedInput.task}</p>
+              <button onClick={() => this.doneDelete(index)} >Delete</button>
+             </div>
+              )
+      }) : 
+      this.state.list.map((savedInput, index) => {
+        return (
+          <div key={index}>
+            <p>{savedInput.task}</p>
+            <button>Start</button>
+            <button onClick={() => this.doneTasks(index)} >Done</button>
+            <button onClick={() => this.taskDelete(index)} >Delete</button>
+          </div>
+              )
+      })}
+      
+    </div>
+  )
+}
 }
 
 export default TaskInput;
