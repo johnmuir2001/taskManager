@@ -31,7 +31,6 @@ class TodoPage extends Component {
     render (){
         return (
             <div>
-                <Nav />
                 <h1>Task To Do</h1>
                 <button onClick={this.todoButton}>To Do</button>
                 <button onClick={this.doneButton}>Done</button>
