@@ -20,6 +20,7 @@ body{
 h1{
     color: white;
 }
+
 input{
     margin: 10px;
     padding: 10px;
@@ -34,6 +35,7 @@ input::placeholder {
     color: white;
     opacity: 0.6;
 }
+
 .continue{
     margin: 30px;
     height: 40px;
@@ -49,18 +51,20 @@ input::placeholder {
 .continue:hover{
     background-color: rgb(165, 241, 132);
 }
-a {
-    color: white;
-}
-a:visited {
-    color: white;
-}
+
 .signup{
     background: none;
     border: 0;
     font-size: 15px;
     border-bottom: 1px solid white;
 }
+.signupLink{
+    color: white;
+}
+.signupLink:visited{
+    color: white;
+}
+
 .logInWarning{
     color: red;
     font-weight: 400;
