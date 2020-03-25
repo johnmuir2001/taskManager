@@ -12,26 +12,17 @@ class TodoPage extends Component {
 
     todoButton = () => {
         this.setState({todo: false})
-
-        // if(this.state.done === true){
-        //     this.setState({todo: false})
-        // }
         console.log("This is your current tasks")
     }
 
     doneButton = () => {
         this.setState({todo: true})
-
-        // if(this.state.todo === true){
-        //     this.setState({done: false})
-        // }
         console.log("These are your done tasks")
     }
 
     render (){
         return (
             <div>
-                <Nav />
                 <h1>Task To Do</h1>
                 <button onClick={this.todoButton}>To Do</button>
                 <button onClick={this.doneButton}>Done</button>
