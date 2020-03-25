@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import AwesomeComponent from "./Loading.js"
 
 class TaskInput extends Component {
   state = {
@@ -54,19 +55,19 @@ class TaskInput extends Component {
 
   render() {
     return (
-      <div>
-        <input
-          placeholder="Enter Task Here"
-          type="text"
-          value={this.state.currentInput}
-          onChange={this.addHandler}
-          onKeyPress={this.enterHandler}
-        ></input>
-        <button onClick={this.submit}>+</button>
-        {this.state.list.map((savedInput, index) => {
-          return <p key={index}>{savedInput.task}</p>;
-        })}
-      </div>
+        <div>
+          <input
+            placeholder="Enter Task Here"
+            type="text"
+            value={this.state.currentInput}
+            onChange={this.addHandler}
+            onKeyPress={this.enterHandler}
+            ></input>
+          <button onClick={this.submit}>+</button>
+          {this.state.list.map((savedInput, index) => {
+            return <p key={index}>{savedInput.task}</p>;
+          })}
+        </div>
     );
   }
 }

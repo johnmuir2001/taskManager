@@ -3,6 +3,8 @@ import "../css/signup.css";
 import { Link } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
+// import AwesomeComponent from "./Loading"
+
 
 class Signup extends Component {
   state = {
@@ -33,6 +35,10 @@ class Signup extends Component {
 
   render() {
     return (
+      <div>
+        {/* <AwesomeComponent/> */}
+      
+
       <div className="background">
         <img className="logo" src={logo} alt="logo" />
         <h1>Sign Up</h1>
@@ -52,6 +58,7 @@ class Signup extends Component {
             </button>
           </Link>
         </div>
+      </div>
       </div>
     );
   }

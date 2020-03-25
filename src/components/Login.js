@@ -3,6 +3,7 @@ import "../css/login.css";
 import { Link, withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
+// import AwesomeComponent from "./Loading"
 
 class Login extends Component {
   state = {
@@ -42,6 +43,10 @@ class Login extends Component {
 
   render() {
     return (
+      <div>
+         {/* <AwesomeComponent/> */}
+      
+      
       <div className="loginWrap">
         <img className="logo" src={logo} alt="logo" />
         <h1>Welcome</h1>
@@ -56,6 +61,7 @@ class Login extends Component {
             <Link to="/signUp">Sign Up Here...</Link>
           </button>
         </div>
+      </div>
       </div>
     );
   }
