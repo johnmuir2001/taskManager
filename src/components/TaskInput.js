@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../css/taskinput.css'
 
 class TaskInput extends Component {
   state = {
@@ -83,10 +84,11 @@ render () {
   return (
     <div>
       {this.props.todo ? null : 
-        <div>
+        <div className="inputwrapper">
           <input placeholder="Enter Task Here" type="text" value={this.state.currentInput} onChange={this.addHandler} onKeyPress={this.enterHandler}></input>
-          <button onClick={this.submit}>+</button>
+          <button className="plus" onClick={this.submit}>+</button>
         </div>}
+        <div className="inputcontainer">
       {this.props.todo ? 
       this.state.doneList.map((savedInput, index) => {
         return (
@@ -98,15 +100,17 @@ render () {
       }) : 
       this.state.list.map((savedInput, index) => {
         return (
-          <div key={index}>
+          <div className="taskwrapper" key={index}>
             <p>{savedInput.task}</p>
-            <button>Start</button>
-            <button onClick={() => this.doneTasks(index)} >Done</button>
-            <button onClick={() => this.taskDelete(index)} >Delete</button>
+            <div className="buttonwrapper">
+            <button className="button start">  Start</button>
+            <button className="button done " onClick={() => this.doneTasks(index)} >Done</button>
+            <button className="button delete" onClick={() => this.taskDelete(index)} >X</button>
+          </div>
           </div>
               )
       })}
-      
+      </div>
     </div>
   )
 }

@@ -32,12 +32,9 @@ class TodoPage extends Component {
                 <button className="buttonstyle" onClick={this.doneButton}>Done</button>
                 </div>
                 <h1>Task To Do</h1>
-                
                 <TaskInput todo={this.state.todo} done={this.state.done}/>
-                
                 <div className="mainnavcontainer">
                 <MainNav/>
-                
                 </div>
                 </div>
             </div>
