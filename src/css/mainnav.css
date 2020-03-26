@@ -8,16 +8,18 @@
     flex-direction: row;
     align-items: center;
     color: white;
-    background-color: #362245;
-    font-size: 18px;
+    background-color: #7ED857;
+    font-size: 20px;
+    font-weight: 700;
 }
 .navLogo{
     height: 80px;
     width: auto;
 }
-.start{
+.navStart{
     display: flex;
     justify-content: space-around;
+    width: 10%;
 }
 .middle{
     display: flex;
@@ -36,4 +38,45 @@
 }
 .navItem:visited{
     color: white;
+}
+
+.navText{
+    display: block;
+}
+.navIcon{
+    display: none;
+    filter: invert(1);
+}
+.navIconImg{
+    height: auto;
+    width: 40px;
+}
+@media only screen and (max-width: 600px) {
+    .navText{
+        display: none;
+    }
+    .navIcon{
+        display: block;
+        filter: invert(1);
+    }
+    .containermainNav {
+        height: 80px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+        color: white;
+        background-color: #7ED857;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .middle{
+        width: 100%;
+    }
+    .end{
+        margin: 0px 30px;
+    }
 }
