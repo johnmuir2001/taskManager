@@ -1,68 +1,67 @@
-import MainNav from '../components/MainNav';
-const React = require("react");
-const ms = require("pretty-ms");
+import MainNav from "../components/MainNav";
+import "../css/timer.css";
+import ms from "pretty-ms";
+import React from "react";
+
 
 class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: 0,
-      isOn: false,
-      start: 0
-    };
-    this.startTimer = this.startTimer.bind(this);
-    this.stopTimer = this.stopTimer.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
+  state = {}
+
+  componentDidMount() {
+    if (this.props.location) {
+      this.setState({ ...this.props.location.state })
+    } else if (this.props.activeTask) {
+      this.setState({ ...this.props.activeTask })
+    }
   }
-  startTimer() {
-    this.setState({
-      isOn: true,
-      time: this.state.time,
-      start: Date.now() - this.state.time
-    });
-    this.timer = setInterval(
-      () =>
-        this.setState({
-          time: Date.now() - this.state.start
-        }),
-      1
-    );
-  }
-  stopTimer() {
-    this.setState({ isOn: false });
-    clearInterval(this.timer);
-  }
-  resetTimer() {
-    this.setState({ time: 0, isOn: false });
-  }
+
   render() {
+    const { currentTask } = this.state
+    const { startTimer, stopTimer, resetTimer, time, isOn} = this.props
+
     return (
-      <div>
-        <MainNav/>
-        <div>
-          {this.props.taskTimer.map((storeTask, index) => {
-          return <h1 key={index} >{storeTask}</h1>
-          })}
+      <div className="container">
+        <div className="circlebutton">
+          <div className="task">
+            <h1>Task: {currentTask && currentTask.task}</h1>
+          </div>
+          <div className="times">
+            <h3>
+              timer:{" "}
+              {ms(time, {
+                colonNotation: true,
+                secondsDecimalDigits: 0
+              })}
+            </h3>
+          </div>
+          {currentTask && (
+            <div>
+              {time === 0 ? (
+                <button className="button" onClick={startTimer}>
+                  start
+                </button>
+              ) : null}
+              {time === 0 || isOn ? null : (
+                <button className="button" onClick={startTimer}>
+                  resume
+                </button>
+              )}
+              {time === 0 || !isOn ? null : (
+                <button className="button" onClick={stopTimer}>
+                  stop
+                </button>
+              )}
+              {time === 0 || isOn ? null : (
+                <button className="button" onClick={resetTimer}>
+                  reset
+                </button>
+              )}
+            </div>
+          )}
         </div>
-        <h3>
-          timer:{" "}
-          {ms(this.state.time, {
-            colonNotation: true,
-            secondsDecimalDigits: 0
-          })}
-        </h3>
-        {this.state.time === 0 ? (
-          <button onClick={this.startTimer}>start</button>
-        ) : null}
-        {this.state.time === 0 || this.state.isOn ? null : (
-          <button onClick={this.startTimer}>resume</button>
-        )}
-        {this.state.time === 0 || !this.state.isOn ? null : (
-          <button onClick={this.stopTimer}>stop</button>
-        )}
-        {this.state.time === 0 || this.state.isOn ? null : (
-          <button onClick={this.resetTimer}>reset</button>
-        )}
+        <div className="nav">
+          <MainNav />
+        </div>
       </div>
     );
   }

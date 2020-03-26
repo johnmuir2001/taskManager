@@ -9,7 +9,6 @@ import logo from "../images/GGWgoGetWork.png";
 class TodoPage extends Component {
     state = {
         todo: false,
-        done: true
     }
 
     todoButton = () => {
@@ -27,18 +26,17 @@ class TodoPage extends Component {
             <div className="todocontainer">
                 <img className="todologo" src={logo} alt="logo" />
                 <div className="todomain">
-                <div className="tododonebuttons">
-                <button className="buttonstyle" onClick={this.todoButton}>To Do</button>
-                <button className="buttonstyle" onClick={this.doneButton}>Done</button>
-                </div>
-                <h1>Task To Do</h1>
-                
-                <TaskInput todo={this.state.todo} done={this.state.done}/>
-                
-                <div className="mainnavcontainer">
-                <MainNav/>
-                
-                </div>
+                    <div className="tododonebuttons">
+                        <button className="buttonstyle" onClick={this.todoButton}>To Do</button>
+                        <button className="buttonstyle" onClick={this.doneButton}>Done</button>
+                    </div>
+                    <h1>Task To Do</h1>
+                    
+                    <TaskInput setActive={this.props.setActive} todo={this.state.todo}/>
+                    
+                    <div className="mainnavcontainer">
+                        <MainNav/>
+                    </div>
                 </div>
             </div>
         )

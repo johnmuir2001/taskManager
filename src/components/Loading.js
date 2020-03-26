@@ -20,7 +20,7 @@ class AwesomeComponent extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-        this.setState({ loading: false});
+      this.setState({ loading: false});
     }, 2000);
   }
 
