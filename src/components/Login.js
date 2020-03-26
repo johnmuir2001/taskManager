@@ -53,8 +53,22 @@ class Login extends Component {
         <img className="logo" src={logo} alt="logo" />
         <h1>Welcome</h1>
         <div className="logIn">
-          <input type="text" name="loginEmail" value={this.state.loginEmail} onChange={this.handleChange} useVendorStyles={false} placeholder="email"></input>
-          <PasswordMask type="password" name="loginPassword" value={this.state.loginPassword} onChange={this.handleChange} useVendorStyles={false} placeholder="password"></PasswordMask>
+          <input
+            type="text"
+            name="loginEmail"
+            value={this.state.loginEmail}
+            onChange={this.handleChange}
+            useVendorStyles={false}
+            placeholder="email"
+          ></input>
+          <PasswordMask
+            type="password"
+            name="loginPassword"
+            value={this.state.loginPassword}
+            onChange={this.handleChange}
+            useVendorStyles={false}
+            placeholder="password"
+          ></PasswordMask>
           <button className="continue" onClick={this.handleLogin}>
             <Link to="/TodoPage">Log In</Link>
           </button>

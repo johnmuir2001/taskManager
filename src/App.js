@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Back from "./components/Back";
 import TodoPage from "./components/TodoPage";
+import Timesheet from "./components/Timesheet";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signUp" component={Signup} />
           <Route path="/TodoPage" component={TodoPage} />
+          <Route path="/timesheet" component={Timesheet} />
         </div>
       </Router>
     </div>
