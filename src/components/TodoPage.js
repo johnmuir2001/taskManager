@@ -31,7 +31,7 @@ class TodoPage extends Component {
                         <button className="buttonstyle" onClick={this.todoButton}>To Do</button>
                         <button className="buttonstyle" onClick={this.doneButton}>Done</button>
                     </div>
-                    {this.state.todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1>Tasks to do</h1>}
+                    {this.state.todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1 className="todoTitle">Tasks to do</h1>}
                     <TaskInput todo={this.state.todo} done={this.state.done}/>
                     <div className="mainnavcontainer">
                         <MainNav/>
