@@ -29,7 +29,6 @@ class TaskInput extends Component {
     }
   })
   this.setState({list: arr, doneList: doneArr})
-  console.log(this.state.doneList)
   }
 
   addHandler = e => {
@@ -89,7 +88,7 @@ class TaskInput extends Component {
     let remove = doneTask.splice(index, 1)
     this.setState({doneList: doneTask})
     //deletes task from database
-    fetch(`https://whispering-temple-37575.herokuapp.com/tasks/${remove[0][0]._id}`, {
+    fetch(`https://whispering-temple-37575.herokuapp.com/tasks/${remove[0]._id}`, {
       method: 'DELETE',
       headers: {
         "content-type": "application/json",
