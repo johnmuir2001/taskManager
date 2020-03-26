@@ -142,7 +142,7 @@ render () {
       this.state.list.map((savedInput, index) => {
         return (
           <div className="taskwrapper" key={index}>
-            <p>{savedInput.task}</p>
+            <p className="taskName">{savedInput.task}</p>
             <div className="buttonwrapper">
             <button className="taskbutton start">Start</button>
             <button className="taskbutton done " onClick={() => this.doneTasks(index)} >Done</button>
@@ -153,6 +153,7 @@ render () {
         );
       })}
     </div>
+    <div className="fade"></div>
     </div>
     
   );

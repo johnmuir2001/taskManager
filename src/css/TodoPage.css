@@ -8,47 +8,84 @@
     height: 150px;
     width: auto;
     background-color: #7ED857;
-    }
+}
    
-   .todologo {
-      height: auto;
-       width:100px;
-       margin-left: 1250px;
-       margin-top: 25px;
-       }
+.todologo {
+    position: relative;
+    height: auto;
+    width:100px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin-top: 25px;
+}
    
-   .todomain {
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           flex-direction: column;
-           margin-top: 100px;
-           overflow: auto;
-           
-           }
+.todomain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    overflow: auto;    
+}
 
-   .tododonebuttons {
-       display: flex;
-       flex-direction: row;
-       justify-content: space-between;
-       height: 40px;
-       width:250px;
-       
-    }
-    .buttonstyle {
-        color: #362245;
+.tododonebuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    width: 350px;   
+}
+
+.buttonstyle {
+    color: #362245;
+    background-color: #7ED857;
+    border-radius: 10px;
+    width: 100px;
+    border-color:#362245;
+    font-size: 17px;
+    font-weight: 600; 
+    cursor: pointer;
+}
+
+.mainnavcontainer {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .todocontainer {
+        border-bottom-left-radius: 50% ;
+        border-bottom-right-radius: 50%;
+        height: 100px;
+        width: auto;
         background-color: #7ED857;
-        border-radius: 10%;
-        width: 60px;
-        border-color:#362245;
-        font-weight: 600; 
-
-
     }
-    .mainnavcontainer {
-                  overflow: hidden;
-                  position: fixed;
-                  bottom: 0;
-                  width: 100%;
-                
-              }
+    .todologo {
+        position: relative;
+        height: auto;
+        width: 70px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        margin-top: 15px;
+    }
+    .todomain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 40px;
+        overflow: auto;    
+    }
+    .tododonebuttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 40px;
+        width: 350px;   
+    }
+    .todoTitle{
+        margin: 10px;
+    }
+}
