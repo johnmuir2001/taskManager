@@ -7,49 +7,45 @@
     border-bottom-right-radius: 50%;
     height: 150px;
     width: auto;
+    background-color: #7ED857;   
+}  
+
+.todologo {
+    height: auto;
+    width:100px;
+    margin-left: 540px;
+    margin-top: 25px;
+}
+   
+.todomain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    overflow: auto;    
+}
+
+.tododonebuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    width:250px;   
+}
+
+.buttonstyle {
+    color: #362245;
     background-color: #7ED857;
-    
-   }
-   
-   .todologo {
-      height: auto;
-       width:100px;
-       margin-left: 540px;
-       margin-top: 25px;
-   }
-   
-   .todomain {
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           flex-direction: column;
-           margin-top: 100px;
-           overflow: auto;
-           
-           }
+    border-radius: 10%;
+    width: 60px;
+    border-color:#362245;
+    font-weight: 600; 
+}
 
-   .tododonebuttons {
-       display: flex;
-       flex-direction: row;
-       justify-content: space-between;
-       height: 40px;
-       width:250px;
-       
-    }
-    .buttonstyle {
-        color: #362245;
-        background-color: #7ED857;
-        border-radius: 10%;
-        width: 60px;
-        border-color:#362245;
-        font-weight: 600; 
-
-
-    }
-    .mainnavcontainer {
-                  overflow: hidden;
-                  position: fixed;
-                  bottom: 0;
-                  width: 100%;
-                
-              }
+.mainnavcontainer {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
