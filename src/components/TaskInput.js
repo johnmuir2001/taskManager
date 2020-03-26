@@ -132,9 +132,10 @@ render () {
       {this.props.todo ? 
       this.state.doneList.map((savedInput, index) => {
         return (
-            <div key={index}>
+          
+            <div className="donewrapper" key={index}>
               <p>{savedInput.task}</p>
-              <button onClick={() => this.doneDelete(index)} >Delete</button>
+              <button className="donedelete" onClick={() => this.doneDelete(index)} >X</button>
             </div>
               )
       }) : 
@@ -143,15 +144,17 @@ render () {
           <div className="taskwrapper" key={index}>
             <p>{savedInput.task}</p>
             <div className="buttonwrapper">
-            <button className="taskbutton start">  Start</button>
+            <button className="taskbutton start">Start</button>
             <button className="taskbutton done " onClick={() => this.doneTasks(index)} >Done</button>
             <button className="taskbutton delete" onClick={() => this.taskDelete(index)} >X</button>
           </div>
           </div>
+          
         );
       })}
     </div>
     </div>
+    
   );
   }
 }
