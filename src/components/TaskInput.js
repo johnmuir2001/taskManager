@@ -73,7 +73,7 @@ class TaskInput extends Component {
     //sets state for new list
     this.setState({list: storeList})
     //deletes task from database
-    fetch(`http://localhost:3010/tasks/${remove[0]._id}`, {
+    fetch(`https://whispering-temple-37575.herokuapp.com/tasks/${remove[0]._id}`, {
       method: 'DELETE',
       headers: {
         "content-type": "application/json",
@@ -89,7 +89,7 @@ class TaskInput extends Component {
     let remove = doneTask.splice(index, 1)
     this.setState({doneList: doneTask})
     //deletes task from database
-    fetch(`http://localhost:3010/tasks/${remove[0][0]._id}`, {
+    fetch(`https://whispering-temple-37575.herokuapp.com/tasks/${remove[0][0]._id}`, {
       method: 'DELETE',
       headers: {
         "content-type": "application/json",
@@ -109,7 +109,7 @@ class TaskInput extends Component {
     storeDone.push(task)
     //save and run this to see if it works
     this.setState({doneList: storeDone, list: currentTasks})
-    await fetch(`http://localhost:3010/tasks/${task._id}`, {
+    await fetch(`https://whispering-temple-37575.herokuapp.com/tasks/${task._id}`, {
       method: 'PATCH',
       headers: {
         "content-type": "application/json",
