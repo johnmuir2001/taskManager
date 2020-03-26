@@ -28,7 +28,8 @@ class TaskInput extends Component {
     this.setState({ currentInput: e.target.value });
   };
 
-  submit = () => {
+  //add new task
+  submit = async () => {
     let storeInput = this.state.list;
 
     if (this.state.currentInput === "") {

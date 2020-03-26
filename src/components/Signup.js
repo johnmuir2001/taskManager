@@ -3,7 +3,6 @@ import "../css/signup.css";
 import { withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
-// import AwesomeComponent from "./Loading"
 
 
 class Signup extends Component {
@@ -41,7 +40,7 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        {/* <AwesomeComponent/> */}
+        
       
 
       <div className="background">

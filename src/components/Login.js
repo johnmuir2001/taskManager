@@ -3,7 +3,7 @@ import "../css/login.css";
 import { Link, withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
-// import AwesomeComponent from "./Loading"
+
 
 class Login extends Component {
   state = {
@@ -22,7 +22,6 @@ class Login extends Component {
       })
     });
     const loginInfo = await login.json();
-    console.log(loginInfo);
     localStorage.setItem("token", loginInfo.token);
 
     if(loginInfo.loggedIn === false){
