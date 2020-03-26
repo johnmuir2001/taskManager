@@ -8,15 +8,14 @@
     height: 150px;
     width: auto;
     background-color: #7ED857;
-    
-   }
+    }
    
    .todologo {
       height: auto;
        width:100px;
-       margin-left: 540px;
+       margin-left: 1250px;
        margin-top: 25px;
-   }
+       }
    
    .todomain {
            display: flex;

@@ -143,9 +143,9 @@ render () {
           <div className="taskwrapper" key={index}>
             <p>{savedInput.task}</p>
             <div className="buttonwrapper">
-            <button className="button start">  Start</button>
-            <button className="button done " onClick={() => this.doneTasks(index)} >Done</button>
-            <button className="button delete" onClick={() => this.taskDelete(index)} >X</button>
+            <button className="taskbutton start">  Start</button>
+            <button className="taskbutton done " onClick={() => this.doneTasks(index)} >Done</button>
+            <button className="taskbutton delete" onClick={() => this.taskDelete(index)} >X</button>
           </div>
           </div>
         );
