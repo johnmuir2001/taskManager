@@ -22,7 +22,6 @@ class Login extends Component {
       })
     });
     const loginInfo = await login.json();
-    console.log(loginInfo);
     localStorage.setItem("token", loginInfo.token);
 
     if(loginInfo.loggedIn === false){
