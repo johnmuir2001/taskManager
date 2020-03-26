@@ -5,13 +5,13 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Back from "./components/Back";
 import TodoPage from "./components/TodoPage";
-import AwesomeComponent from "./components/Loading"
+import LoadingComponent from "./components/Loading"
 import Timer from "./components/timer";
 
 function App() {
   return (
     <div>
-      <AwesomeComponent>
+      <LoadingComponent>
         <Router>
           <div className="Back">
             <Route exact path="/" component={Back} />
@@ -23,7 +23,7 @@ function App() {
           <Route path="/timer" component={Timer} />
           </div>
         </Router>
-      </AwesomeComponent>
+      </LoadingComponent>
     </div>
     
     
