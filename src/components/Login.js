@@ -3,7 +3,7 @@ import "../css/login.css";
 import { Link, withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
-// import AwesomeComponent from "./Loading"
+
 
 class Login extends Component {
   state = {
