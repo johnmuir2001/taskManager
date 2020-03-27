@@ -191,8 +191,9 @@ class Timesheet extends Component {
         <h1>Timesheet</h1>
         {/* <button onClick={this.showTasks}>Show Tasks</button> */}
         <h3 className="total">
-          This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
+          Total weekly time : {this.timeWeek(this.state.OrderTimesheet)}
         </h3>
+        <div className="taskContainer">
         {this.state.OrderTimesheet.map((num, index) => {
           return (
             <div key={index} className="Task">
@@ -211,8 +212,10 @@ class Timesheet extends Component {
             
           );
         })}
-        
+        </div >
+        <div className="timesheetnav">
         <MainNav />
+        </div>
         </div>
       </div>
    
