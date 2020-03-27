@@ -20,6 +20,7 @@ class App extends Component {
 
   setActive = active => {
     this.setState({ activeTask: active });
+    this.resetTimer()
   };
 
   startTimer = () => {
