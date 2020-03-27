@@ -2,6 +2,7 @@ import MainNav from "../components/MainNav";
 import React, { Component } from "react";
 import '../css/timesheet.css'
 import logo from "../images/GGWgoGetWork.png";
+import {withLoading} from "./Loading";
 
 const ms = require("pretty-ms");
 
@@ -42,34 +43,97 @@ class Timesheet extends Component {
   };
 
   dateCheck = (e, index) => {
+    let today = new Date();
     let date = new Date(e);
-    console.log(`Index: ${index}`);
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
     if (index === 0) {
-      return (
-        <h2>
-          {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
-          {this.timeToday(
-            this.state.OrderTimesheet,
-            new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
-          )}
-        </h2>
-      );
-    }
-    if (index < this.state.OrderTimesheet.length && index !== 0) {
       if (
-        new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
-        new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
+        `${days[date.getDay()]}, ${date.getDate()} ${
+          months[date.getMonth()]
+        }` ===
+        `${days[today.getDay()]}, ${today.getDate()} ${
+          months[today.getMonth()]
+        }`
       ) {
         return (
           <h2>
-            {new Date(date).toUTCString()}{" "}
+            {"Today"}{" "}
             {this.timeToday(
               this.state.OrderTimesheet,
-              new Date(date).toUTCString()
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+            )}
+          </h2>
+        );
+      } else if (
+        `${days[date.getDay()]}, ${date.getDate()} ${
+          months[date.getMonth()]
+        }` ===
+        `${days[today.getDay()]}, ${today.getDate() - 1} ${
+          months[today.getMonth()]
+        }`
+      ) {
+        return (
+          <h2>
+            {"Yesterday"}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+            )}
+          </h2>
+        );
+      } else {
+        return (
+          <h2>
+            {`${days[date.getDay()]}, ${date.getDate()} ${
+              months[date.getMonth()]
+            }`}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
             )}
           </h2>
         );
       }
+    }
+    if (
+      index < this.state.OrderTimesheet.length &&
+      index !== 0 &&
+      new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
+        new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
+    ) {
+      return (
+        <h2>
+          {`${days[date.getDay()]}, ${date.getDate()} ${
+            months[date.getMonth()]
+          }`}{" "}
+          {this.timeToday(
+            this.state.OrderTimesheet,
+            new Date(date).toUTCString()
+          )}
+        </h2>
+      );
     }
   };
 
@@ -111,6 +175,13 @@ class Timesheet extends Component {
     return arrSum;
   };
 
+  getTime = e => {
+    let date = new Date(e);
+    return (
+      <p className="listContent">{`Task Created at: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`}</p>
+    );
+  };
+
   render() {
     return (
       
@@ -128,9 +199,7 @@ class Timesheet extends Component {
               {this.dateCheck(num.timeStarted, index)}
               <div className ="dailyTasks">
               <h4 className="listContent">{num.task}</h4>
-              <p className="listContent">
-                {new Date(num.timeStarted).toUTCString()}
-              </p>
+              {this.getTime(num.timeStarted)}
               <p className="listContent">
                 {ms(num.timeRan, {
                   verbose: true,
@@ -151,4 +220,4 @@ class Timesheet extends Component {
   }
 }
 
-export default Timesheet;
+export default withLoading(Timesheet);

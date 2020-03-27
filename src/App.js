@@ -8,7 +8,6 @@ import Signup from "./components/Signup";
 import Back from "./components/Back";
 import TodoPage from "./components/TodoPage";
 import Timesheet from "./components/Timesheet";
-import LoadingComponent from "./components/Loading";
 import Timer from "./components/timer";
 
 class App extends Component {
@@ -53,7 +52,6 @@ class App extends Component {
 
     return (
       <div>
-        <LoadingComponent>
           <Router>
             <div className="Back">
               <Route exact path="/" component={Back} />
@@ -81,7 +79,6 @@ class App extends Component {
               />
             </div>
           </Router>
-        </LoadingComponent>
       </div>
     );
   }
