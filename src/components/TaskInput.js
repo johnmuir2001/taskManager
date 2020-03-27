@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "../css/taskinput.css";
 import TodoItem from "./TodoItem";
 
-
-
 class TaskInput extends Component {
   state = {
     list: [],
@@ -13,7 +11,7 @@ class TaskInput extends Component {
   };
 
   componentDidMount = async () => {
-    this.setState({ loading: true})
+    this.setState({ loading: true });
     const response = await fetch(
       "https://whispering-temple-37575.herokuapp.com/tasks",
       {
@@ -36,7 +34,7 @@ class TaskInput extends Component {
         return null;
       }
     });
-    this.setState({list: arr, doneList: doneArr, loading: false})
+    this.setState({ list: arr, doneList: doneArr, loading: false });
   };
 
   addHandler = e => {
@@ -116,6 +114,8 @@ class TaskInput extends Component {
 
   //move tasks to done
   doneTasks = async index => {
+    const { time, activeTask, stopTimer,resetTimer} = this.props;
+    console.log(activeTask);
     let storeDone = [...this.state.doneList];
     //so we need to push the task we want from the first array
     //first we need to get it.
@@ -138,7 +138,46 @@ class TaskInput extends Component {
         })
       }
     );
+    if (task._id === activeTask.currentTask._id) {
+      await fetch(
+        `https://whispering-temple-37575.herokuapp.com/tasks/instance/${activeTask.currentTask._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify({
+            timeStarted: Date.now(),
+            timeRan: time
+          })
+        }
+      );
+    stopTimer()
+    resetTimer()
+    }
   };
+
+  backButton = async index => {
+    let storeDone = [...this.state.doneList];
+    let currentTasks = [...this.state.list];
+    let task = storeDone.splice(index, 1)[0];
+    currentTasks.push(task);
+    this.setState({ doneList: storeDone, list: currentTasks });
+    await fetch(
+      `https://whispering-temple-37575.herokuapp.com/tasks/${task._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          status: false
+        })
+      }
+    );
+  }
 
   render() {
     const { list, doneList, currentInput, loading } = this.state
@@ -167,12 +206,15 @@ class TaskInput extends Component {
                 return (
                   <div className="donewrapper" key={index}>
                     <p className="taskName">{savedInput.task}</p>
-                    <button
-                      className="donedelete"
-                      onClick={() => this.doneDelete(index)}
-                    >
-                      X
-                    </button>
+                    <div className="donebuttonwrapper">
+                      <button className="backButton" onClick={() => this.backButton(index)}>Back</button>
+                      <button
+                        className="donedelete"
+                        onClick={() => this.doneDelete(index)}
+                      >
+                        X
+                      </button>
+                    </div>
                   </div>
                 );
               })

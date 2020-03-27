@@ -139,16 +139,23 @@ class Timesheet extends Component {
 
   timeToday = (instanceList, date) => {
     const now = new Date(date);
-    const now1 = new Date();
-    //console.log(now);
-    //console.log(now1);
+    const endDay = now.getTime() + 86400000;
+    const endDayTime = new Date(endDay);
     const startOfDay = new Date(
       now.getFullYear(),
       now.getMonth(),
       now.getDate()
     );
+    const endOfDay = new Date(
+      endDayTime.getFullYear(),
+      endDayTime.getMonth(),
+      endDayTime.getDate()
+    );
     const dayCheck = startOfDay.getTime();
-    const test = instanceList.filter(value => value.timeStarted > dayCheck);
+    const endDayCheck = endOfDay.getTime();
+    const test = instanceList.filter(
+      value => value.timeStarted > dayCheck && value.timeStarted < endDayCheck
+    );
     //console.log(test);
     const array = test.map(value => value.timeRan);
     const arrSum = array.reduce((a, b) => a + b, 0);
@@ -182,6 +189,22 @@ class Timesheet extends Component {
     );
   };
 
+  getTotalTime = () => {
+    if (this.timeWeek(this.state.OrderTimesheet) > 1000) {
+      return (
+        <h3 className="total">
+          This weeks total time:{" "}
+          {ms(this.timeWeek(this.state.OrderTimesheet), {
+            verbose: true,
+            secondsDecimalDigits: 0
+          })}
+        </h3>
+      );
+    } else {
+      return <h3 className="total">This weeks total time is: 0</h3>;
+    }
+  };
+
   render() {
     return (
       
@@ -190,9 +213,10 @@ class Timesheet extends Component {
         <div className="timeSheetHeader">
         <h1>Timesheet</h1>
         {/* <button onClick={this.showTasks}>Show Tasks</button> */}
-        <h3 className="total">
-          Total weekly time : {this.timeWeek(this.state.OrderTimesheet)}
-        </h3>
+        {/* <h3 className="total">
+          
+        </h3> */}
+        {this.getTotalTime()}
         <div className="taskContainer">
         {this.state.OrderTimesheet.map((num, index) => {
           return (
