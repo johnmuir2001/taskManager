@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "../css/taskinput.css";
+import TodoItem from "./TodoItem";
+
+
 
 class TaskInput extends Component {
   state = {
     list: [],
     currentInput: "",
-    doneList: []
+    doneList: [],
   };
 
   componentDidMount = async () => {
@@ -136,14 +139,17 @@ class TaskInput extends Component {
   };
 
   render() {
+    const { list, doneList, currentInput } = this.state
+    const { todo, setActive } = this.props
+
     return (
       <div>
-        {this.props.todo ? null : (
+        {todo ? null : (
           <div className="inputwrapper">
             <input
               placeholder="Enter Task Here"
               type="text"
-              value={this.state.currentInput}
+              value={currentInput}
               onChange={this.addHandler}
               onKeyPress={this.enterHandler}
             ></input>
@@ -153,8 +159,8 @@ class TaskInput extends Component {
           </div>
         )}
         <div className="inputcontainer">
-          {this.props.todo
-            ? this.state.doneList.map((savedInput, index) => {
+          {todo
+            ? doneList.map((savedInput, index) => {
                 return (
                   <div className="donewrapper" key={index}>
                     <p>{savedInput.task}</p>
@@ -167,28 +173,15 @@ class TaskInput extends Component {
                   </div>
                 );
               })
-            : this.state.list.map((savedInput, index) => {
-                return (
-                  <div className="taskwrapper" key={index}>
-                    <p className="taskName">{savedInput.task}</p>
-                    <div className="buttonwrapper">
-                      <button className="taskbutton start">Start</button>
-                      <button
-                        className="taskbutton done "
-                        onClick={() => this.doneTasks(index)}
-                      >
-                        Done
-                      </button>
-                      <button
-                        className="taskbutton delete"
-                        onClick={() => this.taskDelete(index)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+            : list.map((savedInput, index) => (
+                <TodoItem
+                  currentTask={savedInput}
+                  index={index}
+                  doneTasks={this.doneTasks}
+                  taskDelete={this.taskDelete}
+                  setActive={setActive}
+                />
+              ))}
         </div>
         <div className="fade"></div>
       </div>
