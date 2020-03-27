@@ -48,38 +48,77 @@ class App extends Component {
     this.setState({ time: 0, isOn: false });
   };
 
+  //This should send the time in state to the current task in the database
+  sendTime = () => {
+    if (this.state.activeTask !== null) {
+      fetch(
+        `https://whispering-temple-37575.herokuapp.com/tasks/instance/${this.state.activeTask.currentTask._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify({
+            timeStarted: Date.now(),
+            timeRan: this.state.time
+          })
+        }
+      );
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener("beforeunload", event => {
+      this.sendTime();
+      event.returnValue = `Are you sure you want to`;
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.sendTime);
+  }
+
   render() {
     const { activeTask, isOn, time } = this.state;
 
     return (
       <div>
-          <Router>
-            <div className="Back">
-              <Route exact path="/" component={Back} />
-            </div>
-            <div>
-              <Route path="/login" component={Login} />
-              <Route path="/signUp" component={Signup} />
-              <Route path="/timesheet" component={Timesheet} />
-              <Route
-                path="/TodoPage"
-                render={() => <TodoPage setActive={this.setActive}/>}
-              />
-              <Route
-                path="/timer"
-                render={() => (
-                  <Timer
-                    activeTask={activeTask}
-                    time={time}
-                    isOn={isOn}
-                    startTimer={this.startTimer}
-                    stopTimer={this.stopTimer}
-                    resetTimer={this.resetTimer}
-                  />
-                )}
-              />
-            </div>
-          </Router>
+        <Router>
+          <div className="Back">
+            <Route exact path="/" component={Back} />
+          </div>
+          <div>
+            <Route path="/login" component={Login} />
+            <Route path="/signUp" component={Signup} />
+            <Route path="/timesheet" component={Timesheet} />
+            <Route
+              path="/TodoPage"
+              render={() => (
+                <TodoPage
+                  setActive={this.setActive}
+                  time={time}
+                  activeTask={activeTask}
+                  stopTimer={this.stopTimer}
+                  resetTimer={this.resetTimer}
+                />
+              )}
+            />
+            <Route
+              path="/timer"
+              render={() => (
+                <Timer
+                  activeTask={activeTask}
+                  time={time}
+                  isOn={isOn}
+                  startTimer={this.startTimer}
+                  stopTimer={this.stopTimer}
+                  resetTimer={this.resetTimer}
+                />
+              )}
+            />
+          </div>
+        </Router>
       </div>
     );
   }
