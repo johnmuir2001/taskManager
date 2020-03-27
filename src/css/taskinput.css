@@ -1,29 +1,48 @@
 .inputcontainer {
     overflow: auto;
-    height: 55vh;
+    height: 48vh;
 }
 
 .inputwrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    /* background-color: red; */
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
     height: auto;
     width: 400px;
-    margin-left: 100px;
     overflow: auto;
-    
+    display: flex;
+    justify-content: center;
 }
 .plus {
     height: 30px;
     width: 30px;
-    border-radius: 20%;
+    border: 0;
+    border-radius: 6px;
+    background-color:  #7ED857;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 16px;
 }
 .taskwrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     background-color:  rgb(177, 224, 157);
+    height: auto;
+    width: 500px;
+    margin: 20px 0px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #362245;
+    }
+
+    .donewrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: rgb(212, 169, 212);
     height: auto;
     width: 500px;
     margin-top: 40px;
@@ -33,7 +52,25 @@
     border-radius: 10px;
     font-weight: 600;
     color: #362245;
+   }
+
+   .donedelete {
+    color:rgb(224, 9, 9);
+    font-size: 20px;
+    background-color:rgb(163, 126, 163);  
+    border-color:#362245;;
+    border-width: 2px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
     
+    font-weight: 600;
+    font-size: 15px;
+   }
+        
+
+.taskName{
+    padding: 0px 0px 0px 20px;
 }
 .buttonwrapper {
     display: flex;
@@ -44,20 +81,77 @@
 .taskbutton {
     background-color:  #7ED857;
     border-color:#7ED857;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
     width: 50px;
     border-radius: 50%;
     color: #362245;
     font-weight: 600;
     font-size: 15px;
+    cursor: pointer
+}
+.start {
+    color: green;
+    border-color: green;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.done {
+    border-color: #362245;
+    border-style: solid;
+    border-width: 2px;
+    color:#7ED857;
+    background-color: #362245
+}
+.delete {
+    color:rgb(224, 9, 9);
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .taskwrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        background-color:  rgb(177, 224, 157);
+        width: auto;
+        margin: 20px 10px;
+        padding: 5px;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #362245;
+    }
+    .taskbutton {
+        background-color:  #7ED857;
+        border-color:#7ED857;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        color: #362245;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer
+    }
+    .buttonwrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 150px;
     }
     .start {
         color: green;
         border-color: green;
         border-style: solid;
         border-width: 2px;
-
     }
+    
     .done {
         border-color: #362245;
         border-style: solid;
@@ -69,3 +163,36 @@
         color:rgb(224, 9, 9);
         font-size: 20px;
     }
+    .inputwrapper {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        height: auto;
+        width: 100vw;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .inputcontainer {
+        overflow: auto;
+        height: 50vh;
+        width: 100vw;
+    }
+    .plus {
+        position: relative;
+        top: -6px;
+        height: 38px;
+        width: 38px;
+        border: 0;
+        border-radius: 0;
+        border-radius: 50%;
+        background-color:  #7ED857;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .fade{
+        width: 100px;
+        height: 80px;
+        background-image: linear-gradient(0deg, rgba(54,34,69,1) 50%, rgba(255,255,255,0) 100%);
+    }
+}

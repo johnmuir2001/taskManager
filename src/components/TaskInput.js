@@ -156,10 +156,13 @@ class TaskInput extends Component {
           {this.props.todo
             ? this.state.doneList.map((savedInput, index) => {
                 return (
-                  <div key={index}>
+                  <div className="donewrapper" key={index}>
                     <p>{savedInput.task}</p>
-                    <button onClick={() => this.doneDelete(index)}>
-                      Delete
+                    <button
+                      className="donedelete"
+                      onClick={() => this.doneDelete(index)}
+                    >
+                      X
                     </button>
                   </div>
                 );
@@ -167,9 +170,9 @@ class TaskInput extends Component {
             : this.state.list.map((savedInput, index) => {
                 return (
                   <div className="taskwrapper" key={index}>
-                    <p>{savedInput.task}</p>
+                    <p className="taskName">{savedInput.task}</p>
                     <div className="buttonwrapper">
-                      <button className="taskbutton start"> Start</button>
+                      <button className="taskbutton start">Start</button>
                       <button
                         className="taskbutton done "
                         onClick={() => this.doneTasks(index)}
@@ -187,6 +190,7 @@ class TaskInput extends Component {
                 );
               })}
         </div>
+        <div className="fade"></div>
       </div>
     );
   }
