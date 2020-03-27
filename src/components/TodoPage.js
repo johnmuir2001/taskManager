@@ -23,16 +23,18 @@ class TodoPage extends Component {
     }
 
     render (){
+        const { setActive } = this.props
+        const { todo, done } = this.state
         return (
             <div className="todocontainer">
                 <img className="todologo" src={logo} alt="logo" />
                 <div className="todomain">
                     <div className="tododonebuttons">
-                        <button className="buttonstyle" onClick={this.todoButton}>To Do</button>
-                        <button className="buttonstyle" onClick={this.doneButton}>Done</button>
+                        <button className={this.state.todo ? "buttonstyle" : "buttonstyle hidden"} onClick={this.todoButton}>To Do</button>
+                        <button className={this.state.todo ? "buttonstyle hidden" : "buttonstyle"} onClick={this.doneButton}>Done</button>
                     </div>
-                    {this.state.todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1 className="todoTitle">Tasks to do</h1>}
-                    <TaskInput todo={this.state.todo} done={this.state.done}/>
+                    {todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1 className="todoTitle">Tasks to do</h1>}
+                    <TaskInput todo={todo} done={done} setActive={setActive}/>
                     <div className="mainnavcontainer">
                         <MainNav/>
                     </div>
