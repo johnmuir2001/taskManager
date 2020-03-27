@@ -3,6 +3,7 @@ import "../css/signup.css";
 import { withRouter } from "react-router-dom";
 import logo from "../images/GGWgoGetWork.png";
 import PasswordMask from "react-password-mask";
+import { withLoading } from "./Loading";
 
 
 class Signup extends Component {
@@ -67,4 +68,4 @@ class Signup extends Component {
   }
 }
 
-export default withRouter(Signup);
+export default withRouter(withLoading(Signup));
