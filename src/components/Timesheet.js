@@ -151,9 +151,6 @@ class Timesheet extends Component {
     );
     const dayCheck = startOfDay.getTime();
     const endDayCheck = endOfDay.getTime();
-    console.log(dayCheck);
-    console.log(endDayCheck);
-    console.log(dayCheck);
     const test = instanceList.filter(
       value => value.timeStarted > dayCheck && value.timeStarted < endDayCheck
     );
@@ -190,13 +187,27 @@ class Timesheet extends Component {
     );
   };
 
+  getTotalTime = () => {
+    if (this.timeWeek(this.state.OrderTimesheet) > 1000) {
+      return (
+        <h3>
+          This weeks total time:{" "}
+          {ms(this.timeWeek(this.state.OrderTimesheet), {
+            verbose: true,
+            secondsDecimalDigits: 0
+          })}
+        </h3>
+      );
+    } else {
+      return <h3>This weeks total time is: 0</h3>;
+    }
+  };
+
   render() {
     return (
       <div className="toDoList">
         {/* <button onClick={this.showTasks}>Show Tasks</button> */}
-        <h3>
-          This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
-        </h3>
+        {this.getTotalTime()}
         {this.state.OrderTimesheet.map((num, index) => {
           return (
             <div key={index} className="Task">
