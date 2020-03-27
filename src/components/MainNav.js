@@ -8,8 +8,8 @@ import timesheet from "../images/timesheet.png";
 
 class MainNav extends Component {
   logout = () => {
-    localStorage.clear()
-  }
+    localStorage.clear();
+  };
 
   render() {
     return (
@@ -18,21 +18,33 @@ class MainNav extends Component {
         <div className="middle">
           <Link className="navItem toDo" to="/TodoPage">
             <span className="navText">To Do</span>
-            <span className="navIcon"><img className="navIconImg" src={home} alt="todo icon"></img></span>
+            <span className="navIcon">
+              <img className="navIconImg" src={home} alt="todo icon"></img>
+            </span>
           </Link>
           <Link className="navItem timer" to="/timer">
             <span className="navText">Timer</span>
-            <span className="navIcon"><img className="navIconImg" src={timer} alt="timer icon"></img></span>
+            <span className="navIcon">
+              <img className="navIconImg" src={timer} alt="timer icon"></img>
+            </span>
           </Link>
           <Link className="navItem timesheet" to="timesheet">
             <span className="navText">Timesheet</span>
-            <span className="navIcon"><img className="navIconImg" src={timesheet} alt="timesheet icon"></img></span>
+            <span className="navIcon">
+              <img
+                className="navIconImg"
+                src={timesheet}
+                alt="timesheet icon"
+              ></img>
+            </span>
           </Link>
         </div>
         <div className="end">
           <Link className="navItem logOut" onClick={this.logout} to="/">
             <span className="navText">Log Out</span>
-            <span className="navIcon"><img className="navIconImg" src={logOut} alt="log out icon"></img></span>
+            <span className="navIcon">
+              <img className="navIconImg" src={logOut} alt="log out icon"></img>
+            </span>
           </Link>
         </div>
       </div>
