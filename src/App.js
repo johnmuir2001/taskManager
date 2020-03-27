@@ -68,9 +68,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener("beforeunload", (event)=>{
+    window.addEventListener("beforeunload", event => {
       this.sendTime();
-      event.returnValue = `Are you sure you want to`
+      event.returnValue = `Are you sure you want to`;
     });
   }
 
@@ -79,40 +79,45 @@ class App extends Component {
   }
 
   render() {
-    const { activeTask, isOn, time} = this.state;
-    
+    const { activeTask, isOn, time } = this.state;
 
     return (
       <div>
-          <Router>
-            <div className="Back">
-              <Route exact path="/" component={Back} />
-            </div>
-            <div>
-              <Route path="/login" component={Login} />
-              <Route path="/signUp" component={Signup} />
-              <Route path="/timesheet" component={Timesheet} />
-              <Route
-                path="/TodoPage"
-                render={() => (
-                  <TodoPage setActive={this.setActive} time={time} activeTask={activeTask}/>
-                )}
-              />
-              <Route
-                path="/timer"
-                render={() => (
-                  <Timer
-                    activeTask={activeTask}
-                    time={time}
-                    isOn={isOn}
-                    startTimer={this.startTimer}
-                    stopTimer={this.stopTimer}
-                    resetTimer={this.resetTimer}
-                  />
-                )}
-              />
-            </div>
-          </Router>
+        <Router>
+          <div className="Back">
+            <Route exact path="/" component={Back} />
+          </div>
+          <div>
+            <Route path="/login" component={Login} />
+            <Route path="/signUp" component={Signup} />
+            <Route path="/timesheet" component={Timesheet} />
+            <Route
+              path="/TodoPage"
+              render={() => (
+                <TodoPage
+                  setActive={this.setActive}
+                  time={time}
+                  activeTask={activeTask}
+                  stopTimer={this.stopTimer}
+                  resetTimer={this.resetTimer}
+                />
+              )}
+            />
+            <Route
+              path="/timer"
+              render={() => (
+                <Timer
+                  activeTask={activeTask}
+                  time={time}
+                  isOn={isOn}
+                  startTimer={this.startTimer}
+                  stopTimer={this.stopTimer}
+                  resetTimer={this.resetTimer}
+                />
+              )}
+            />
+          </div>
+        </Router>
       </div>
     );
   }

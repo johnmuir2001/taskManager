@@ -114,7 +114,7 @@ class TaskInput extends Component {
 
   //move tasks to done
   doneTasks = async index => {
-    const { time, activeTask } = this.props;
+    const { time, activeTask, stopTimer,resetTimer} = this.props;
     console.log(activeTask);
     let storeDone = [...this.state.doneList];
     //so we need to push the task we want from the first array
@@ -153,6 +153,8 @@ class TaskInput extends Component {
           })
         }
       );
+    stopTimer()
+    resetTimer()
     }
   };
 
