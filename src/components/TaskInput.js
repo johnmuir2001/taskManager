@@ -140,12 +140,25 @@ class TaskInput extends Component {
     );
   };
 
-  backButton = index => {
+  backButton = async index => {
     let storeDone = [...this.state.doneList];
     let currentTasks = [...this.state.list];
     let task = storeDone.splice(index, 1)[0];
     currentTasks.push(task);
     this.setState({ doneList: storeDone, list: currentTasks });
+    await fetch(
+      `https://whispering-temple-37575.herokuapp.com/tasks/${task._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          status: false
+        })
+      }
+    );
   }
 
   render() {
@@ -175,13 +188,15 @@ class TaskInput extends Component {
                 return (
                   <div className="donewrapper" key={index}>
                     <p className="taskName">{savedInput.task}</p>
-                    <button onClick={() => this.backButton(index)}>Back</button>
-                    <button
-                      className="donedelete"
-                      onClick={() => this.doneDelete(index)}
-                    >
-                      X
-                    </button>
+                    <div className="donebuttonwrapper">
+                      <button className="backButton" onClick={() => this.backButton(index)}>Back</button>
+                      <button
+                        className="donedelete"
+                        onClick={() => this.doneDelete(index)}
+                      >
+                        X
+                      </button>
+                    </div>
                   </div>
                 );
               })
