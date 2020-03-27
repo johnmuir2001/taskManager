@@ -194,7 +194,7 @@
     }
     .inputcontainer {
         overflow: auto;
-        height: 50vh;
+        height: 40vh;
         width: 100vw;
     }
     .plus {
@@ -214,4 +214,11 @@
         height: 80px;
         background-image: linear-gradient(0deg, rgba(54,34,69,1) 50%, rgba(255,255,255,0) 100%);
     }
+}
+
+@media only screen and (max-width: 320px){
+    .inputcontainer{
+        height: 195px;
+    }
+    
 }
