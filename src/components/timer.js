@@ -1,4 +1,4 @@
-import MainNav from '../components/MainNav';
+import MainNav from "../components/MainNav";
 import "../css/timer.css";
 import logo from "../images/GGWgoGetWork.png";
 const React = require("react");
@@ -39,39 +39,47 @@ class Timer extends React.Component {
   }
   render() {
     return (
-  <div className="container">
-    <div className="topBanner">
-      <img className="timerlogo" src={logo} alt="logo" />
-    </div>
-    <div className="circlebutton">
-      <div className="times">
-        <h2>Timer</h2>
-        <h3>
-          {ms(this.state.time, {
-            colonNotation: true,
-            secondsDecimalDigits: 0
-          })}
-        </h3>
+      <div className="container">
+        <div className="topBanner">
+          <img className="timerlogo" src={logo} alt="logo" />
         </div>
-        <div>
-        {this.state.time === 0 ? (
-          <button className="button"  onClick={this.startTimer}>start</button>
-        ) : null}
-        {this.state.time === 0 || this.state.isOn ? null : (
-          <button className="button"  onClick={this.startTimer}>resume</button>
-        )}
-        {this.state.time === 0 || !this.state.isOn ? null : (
-          <button className="button"  onClick={this.stopTimer}>stop</button>
-        )}
-        {this.state.time === 0 || this.state.isOn ? null : (
-          <button className="button" onClick={this.resetTimer}>reset</button>
-        )}
+        <div className="circlebutton">
+          <div className="times">
+            <h2>Timer</h2>
+            <h3>
+              {ms(this.state.time, {
+                colonNotation: true,
+                secondsDecimalDigits: 0
+              })}
+            </h3>
+          </div>
+          <div>
+            {this.state.time === 0 ? (
+              <button className="button" onClick={this.startTimer}>
+                Start
+              </button>
+            ) : null}
+            {this.state.time === 0 || this.state.isOn ? null : (
+              <button className="button" onClick={this.startTimer}>
+                Resume
+              </button>
+            )}
+            {this.state.time === 0 || !this.state.isOn ? null : (
+              <button className="button" onClick={this.stopTimer}>
+                Stop
+              </button>
+            )}
+            {this.state.time === 0 || this.state.isOn ? null : (
+              <button className="button" onClick={this.resetTimer}>
+                Reset
+              </button>
+            )}
+          </div>
         </div>
+        <div className="nav">
+          <MainNav />
         </div>
-    <div className="nav">
-      <MainNav/>
-    </div>
-  </div>
+      </div>
     );
   }
 }
