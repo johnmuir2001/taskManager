@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/taskManager/static/css/main.f6bbac90.chunk.css",
+    "main.js": "/taskManager/static/js/main.729c29df.chunk.js",
+    "main.js.map": "/taskManager/static/js/main.729c29df.chunk.js.map",
+    "runtime-main.js": "/taskManager/static/js/runtime-main.688250ab.js",
+    "runtime-main.js.map": "/taskManager/static/js/runtime-main.688250ab.js.map",
+    "static/js/2.b12ec41f.chunk.js": "/taskManager/static/js/2.b12ec41f.chunk.js",
+    "static/js/2.b12ec41f.chunk.js.map": "/taskManager/static/js/2.b12ec41f.chunk.js.map",
+    "index.html": "/taskManager/index.html",
+    "precache-manifest.adab95741d8a0d8baa54efe10b98df9b.js": "/taskManager/precache-manifest.adab95741d8a0d8baa54efe10b98df9b.js",
+    "service-worker.js": "/taskManager/service-worker.js",
+    "static/css/main.f6bbac90.chunk.css.map": "/taskManager/static/css/main.f6bbac90.chunk.css.map",
+    "static/js/2.b12ec41f.chunk.js.LICENSE.txt": "/taskManager/static/js/2.b12ec41f.chunk.js.LICENSE.txt",
+    "static/media/GGWgoGetWork.png": "/taskManager/static/media/GGWgoGetWork.b5d12eb9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.688250ab.js",
+    "static/js/2.b12ec41f.chunk.js",
+    "static/css/main.f6bbac90.chunk.css",
+    "static/js/main.729c29df.chunk.js"
+  ]
+}
