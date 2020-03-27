@@ -1,5 +1,7 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
+import { withLoading } from "./Loading";
+
 const ms = require("pretty-ms");
 
 class Timesheet extends Component {
@@ -39,41 +41,125 @@ class Timesheet extends Component {
   };
 
   dateCheck = (e, index) => {
+    let today = new Date();
     let date = new Date(e);
-    //let day = date.getDay();
-    if (index !== this.state.OrderTimesheet.length - 1 && index !== 0) {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    if (index === 0) {
       if (
-        new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
-        new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
+        `${days[date.getDay()]}, ${date.getDate()} ${
+          months[date.getMonth()]
+        }` ===
+        `${days[today.getDay()]}, ${today.getDate()} ${
+          months[today.getMonth()]
+        }`
       ) {
         return (
           <h2>
-            {new Date(date).toUTCString()}{" "}
+            {"Today"}{" "}
             {this.timeToday(
               this.state.OrderTimesheet,
-              new Date(date).toUTCString()
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+            )}
+          </h2>
+        );
+      } else if (
+        `${days[date.getDay()]}, ${date.getDate()} ${
+          months[date.getMonth()]
+        }` ===
+        `${days[today.getDay()]}, ${today.getDate() - 1} ${
+          months[today.getMonth()]
+        }`
+      ) {
+        return (
+          <h2>
+            {"Yesterday"}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+            )}
+          </h2>
+        );
+      } else {
+        return (
+          <h2>
+            {`${days[date.getDay()]}, ${date.getDate()} ${
+              months[date.getMonth()]
+            }`}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
             )}
           </h2>
         );
       }
     }
+    if (
+      index < this.state.OrderTimesheet.length &&
+      index !== 0 &&
+      new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
+        new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
+    ) {
+      return (
+        <h2>
+          {`${days[date.getDay()]}, ${date.getDate()} ${
+            months[date.getMonth()]
+          }`}{" "}
+          {this.timeToday(
+            this.state.OrderTimesheet,
+            new Date(date).toUTCString()
+          )}
+        </h2>
+      );
+    }
   };
 
   timeToday = (instanceList, date) => {
-    let arrSum = "";
     const now = new Date(date);
+    const endDay = now.getTime() + 86400000;
+    const endDayTime = new Date(endDay);
     const startOfDay = new Date(
       now.getFullYear(),
       now.getMonth(),
       now.getDate()
     );
+    const endOfDay = new Date(
+      endDayTime.getFullYear(),
+      endDayTime.getMonth(),
+      endDayTime.getDate()
+    );
     const dayCheck = startOfDay.getTime();
-    const test = instanceList.filter(value => value.timeStarted > dayCheck);
-    console.log(test);
+    const endDayCheck = endOfDay.getTime();
+    console.log(dayCheck);
+    console.log(endDayCheck);
+    console.log(dayCheck);
+    const test = instanceList.filter(
+      value => value.timeStarted > dayCheck && value.timeStarted < endDayCheck
+    );
+    //console.log(test);
     const array = test.map(value => value.timeRan);
-    console.log(array);
-    arrSum = array.reduce((a, b) => a + b, 0);
-    console.log(arrSum);
+    const arrSum = array.reduce((a, b) => a + b, 0);
     return arrSum;
   };
 
@@ -97,6 +183,13 @@ class Timesheet extends Component {
     return arrSum;
   };
 
+  getTime = e => {
+    let date = new Date(e);
+    return (
+      <p className="listContent">{`Task Created at: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`}</p>
+    );
+  };
+
   render() {
     return (
       <div className="toDoList">
@@ -104,23 +197,12 @@ class Timesheet extends Component {
         <h3>
           This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
         </h3>
-        {this.state.gotTasks ? (
-          <h2>
-            {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
-            {this.timeToday(
-              this.state.OrderTimesheet,
-              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
-            )}
-          </h2>
-        ) : null}
         {this.state.OrderTimesheet.map((num, index) => {
           return (
             <div key={index} className="Task">
               {this.dateCheck(num.timeStarted, index)}
               <h4 className="listContent">{num.task}</h4>
-              <p className="listContent">
-                {new Date(num.timeStarted).toUTCString()}
-              </p>
+              {this.getTime(num.timeStarted)}
               <p className="listContent">
                 {ms(num.timeRan, {
                   verbose: true,
@@ -136,4 +218,4 @@ class Timesheet extends Component {
   }
 }
 
-export default Timesheet;
+export default withLoading(Timesheet);

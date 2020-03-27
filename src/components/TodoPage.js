@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TaskInput from './TaskInput'
+import {withLoading} from "./Loading";
 
 import '../css/TodoPage.css'
 import MainNav from '../components/MainNav';
@@ -46,4 +47,4 @@ class TodoPage extends Component {
 
 }
 
-export default TodoPage;
+export default withLoading(TodoPage);

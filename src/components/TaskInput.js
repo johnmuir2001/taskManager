@@ -156,9 +156,17 @@ class TaskInput extends Component {
     }
   };
 
+  backButton = index => {
+    let storeDone = [...this.state.doneList];
+    let currentTasks = [...this.state.list];
+    let task = storeDone.splice(index, 1)[0];
+    currentTasks.push(task);
+    this.setState({ doneList: storeDone, list: currentTasks });
+  }
+
   render() {
-    const { list, doneList, currentInput } = this.state;
-    const { todo, setActive } = this.props;
+    const { list, doneList, currentInput, loading } = this.state
+    const { todo, setActive } = this.props
 
     return (
       <div>
@@ -177,14 +185,13 @@ class TaskInput extends Component {
           </div>
         )}
         <div className="inputcontainer">
-          <h1 className={this.state.loading ? "loading" : "loading hidden"}>
-            Loading Tasks...
-          </h1>
+          <h1 className={loading ? "loading" : "loading hidden"}>Loading Tasks...</h1>
           {todo
             ? doneList.map((savedInput, index) => {
                 return (
                   <div className="donewrapper" key={index}>
                     <p className="taskName">{savedInput.task}</p>
+                    <button onClick={() => this.backButton(index)}>Back</button>
                     <button
                       className="donedelete"
                       onClick={() => this.doneDelete(index)}

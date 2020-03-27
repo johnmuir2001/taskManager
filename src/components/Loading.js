@@ -10,46 +10,47 @@ const override = css`
   border-color: #7ED857;
 `;
  
-class LoadingComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-    };
+export const withLoading = Component => (
+  class LoadingComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        loading: true
+      };
+    }
+
+    componentDidMount() {
+      setTimeout(() => {
+          this.setState({ loading: false});
+      }, 2000);
+    }
+
+    render() {
+      const { loading } = this.state
+      const { children } = this.props
+
+      return (
+        <>
+        {loading ? (
+          <div className="sweet-loading">
+            <BarLoader
+              css={override}
+              size={100}
+              color={"#7ED857"}
+              loading={loading}
+            />
+          </div>
+        ) : (
+          <FadeIn>
+            <Component {...this.props} />
+          </FadeIn>
+        )}
+        </>
+      );
+    }
   }
+)
 
-  componentDidMount() {
-    setTimeout(() => {
-        this.setState({ loading: false});
-    }, 2000);
-  }
-
-  render() {
-    const { loading } = this.state
-    const { children } = this.props
-
-    return (
-      <>
-      {loading ? (
-        <div className="sweet-loading">
-          <BarLoader
-            css={override}
-            size={100}
-            color={"#7ED857"}
-            loading={loading}
-          />
-        </div>
-      ) : (
-        <FadeIn>
-          {children}
-        </FadeIn>
-      )}
-      </>
-    );
-  }
-}
-
-export default LoadingComponent
 
 
 
