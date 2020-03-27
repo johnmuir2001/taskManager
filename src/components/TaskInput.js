@@ -166,7 +166,7 @@ class TaskInput extends Component {
             ? doneList.map((savedInput, index) => {
                 return (
                   <div className="donewrapper" key={index}>
-                    <p>{savedInput.task}</p>
+                    <p className="taskName">{savedInput.task}</p>
                     <button
                       className="donedelete"
                       onClick={() => this.doneDelete(index)}
