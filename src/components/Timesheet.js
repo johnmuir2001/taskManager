@@ -43,8 +43,19 @@ class Timesheet extends Component {
 
   dateCheck = (e, index) => {
     let date = new Date(e);
-    //let day = date.getDay();
-    if (index !== this.state.OrderTimesheet.length - 1 && index !== 0) {
+    console.log(`Index: ${index}`);
+    if (index === 0) {
+      return (
+        <h2>
+          {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
+          {this.timeToday(
+            this.state.OrderTimesheet,
+            new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+          )}
+        </h2>
+      );
+    }
+    if (index < this.state.OrderTimesheet.length && index !== 0) {
       if (
         new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
         new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
@@ -63,8 +74,10 @@ class Timesheet extends Component {
   };
 
   timeToday = (instanceList, date) => {
-    let arrSum = "";
     const now = new Date(date);
+    const now1 = new Date();
+    //console.log(now);
+    //console.log(now1);
     const startOfDay = new Date(
       now.getFullYear(),
       now.getMonth(),
@@ -72,11 +85,9 @@ class Timesheet extends Component {
     );
     const dayCheck = startOfDay.getTime();
     const test = instanceList.filter(value => value.timeStarted > dayCheck);
-    console.log(test);
+    //console.log(test);
     const array = test.map(value => value.timeRan);
-    console.log(array);
-    arrSum = array.reduce((a, b) => a + b, 0);
-    console.log(arrSum);
+    const arrSum = array.reduce((a, b) => a + b, 0);
     return arrSum;
   };
 
@@ -111,22 +122,11 @@ class Timesheet extends Component {
         <h3 className="total">
           This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
         </h3>
-        </div>
-        {this.state.gotTasks ? (
-          <div>
-         <h2 >
-            {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
-            {this.timeToday(
-              this.state.OrderTimesheet,
-              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
-            )}
-          </h2>
-        </div>
-        ) : null}
         {this.state.OrderTimesheet.map((num, index) => {
           return (
             <div key={index} className="Task">
               {this.dateCheck(num.timeStarted, index)}
+              <div className ="dailyTasks">
               <h4 className="listContent">{num.task}</h4>
               <p className="listContent">
                 {new Date(num.timeStarted).toUTCString()}
@@ -137,11 +137,12 @@ class Timesheet extends Component {
                   secondsDecimalDigits: 0
                 })}
               </p>
+              </div>
             </div>
             
           );
         })}
-        <div>
+        
         <MainNav />
         </div>
       </div>
