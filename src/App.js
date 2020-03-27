@@ -5,7 +5,8 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Back from "./components/Back";
 import TodoPage from "./components/TodoPage";
-import LoadingComponent from "./components/Loading"
+import Timesheet from "./components/Timesheet";
+import LoadingComponent from "./components/Loading";
 import Timer from "./components/timer";
 
 function App() {
@@ -16,18 +17,16 @@ function App() {
           <div className="Back">
             <Route exact path="/" component={Back} />
           </div>
-          <div> 
-          <Route path="/login" component={Login} />
-          <Route path="/signUp" component={Signup} />
-          <Route path="/TodoPage" component={TodoPage} />
-          <Route path="/timer" component={Timer} />
+          <div>
+            <Route path="/login" component={Login} />
+            <Route path="/signUp" component={Signup} />
+            <Route path="/TodoPage" component={TodoPage} />
+            <Route path="/timesheet" component={Timesheet} />
           </div>
+          <Route path="/timer" component={Timer} />
         </Router>
       </LoadingComponent>
     </div>
-    
-    
-
   );
 }
 
