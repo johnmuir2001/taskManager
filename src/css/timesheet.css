@@ -1,0 +1,50 @@
+
+
+
+.timeSheetList {
+        border-bottom-left-radius: 50% ;
+        border-bottom-right-radius: 50%;
+        height: 150px;
+        width: auto;
+        background-color: #7ED857;
+        display: flex;
+        flex-direction: column;
+} 
+
+.timeSheetHeader {
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(177, 224, 157);
+    height: 75px;
+    width: 300px;
+    border-radius: 20px;
+    
+    border-style: solid;
+    border-color:  #7ED857;
+    border-width: 2px;
+}
+
+.Task {
+    display: flex;
+    flex-direction:column;
+    /* justify-content:flex-start; */
+    align-items: flex-start;
+    background-color: crimson;
+    border-style: solid;
+    border-color: blue;
+    border-width: 1px;
+    
+
+}
+
+.listContent {
+    background-color: yellow;
+}

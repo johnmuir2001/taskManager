@@ -1,5 +1,8 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
+import '../css/timesheet.css'
+import logo from "../images/GGWgoGetWork.png";
+
 const ms = require("pretty-ms");
 
 class Timesheet extends Component {
@@ -99,19 +102,26 @@ class Timesheet extends Component {
 
   render() {
     return (
-      <div className="toDoList">
+      
+      <div className="timeSheetList">
+        <img className="todologo" src={logo} alt="logo" />
+        <div className="timeSheetHeader">
+        <h1>Timesheet</h1>
         {/* <button onClick={this.showTasks}>Show Tasks</button> */}
-        <h3>
+        <h3 className="total">
           This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
         </h3>
+        </div>
         {this.state.gotTasks ? (
-          <h2>
+          <div>
+         <h2 >
             {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
             {this.timeToday(
               this.state.OrderTimesheet,
               new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
             )}
           </h2>
+        </div>
         ) : null}
         {this.state.OrderTimesheet.map((num, index) => {
           return (
@@ -128,10 +138,14 @@ class Timesheet extends Component {
                 })}
               </p>
             </div>
+            
           );
         })}
+        <div>
         <MainNav />
+        </div>
       </div>
+   
     );
   }
 }
