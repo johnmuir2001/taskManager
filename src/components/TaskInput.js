@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import TodoItem from "./TodoItem";
 import "../css/taskinput.css";
+import TodoItem from "./TodoItem";
+
+
 
 class TaskInput extends Component {
   state = {
@@ -26,8 +28,10 @@ class TaskInput extends Component {
     data.map(task => {
       if (task.status === true) {
         doneArr.push(task);
+        return null;
       } else {
         arr.push(task);
+        return null;
       }
     });
     this.setState({ list: arr, doneList: doneArr });

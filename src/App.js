@@ -7,7 +7,8 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Back from "./components/Back";
 import TodoPage from "./components/TodoPage";
-import AwesomeComponent from "./components/Loading";
+import Timesheet from "./components/Timesheet";
+import LoadingComponent from "./components/Loading";
 import Timer from "./components/timer";
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
 
     return (
       <div>
-        <AwesomeComponent>
+        <LoadingComponent>
           <Router>
             <div className="Back">
               <Route exact path="/" component={Back} />
@@ -60,6 +61,7 @@ class App extends Component {
             <div>
               <Route path="/login" component={Login} />
               <Route path="/signUp" component={Signup} />
+              <Route path="/timesheet" component={Timesheet} />
               <Route
                 path="/TodoPage"
                 render={() => <TodoPage setActive={this.setActive} />}
@@ -79,7 +81,7 @@ class App extends Component {
               />
             </div>
           </Router>
-        </AwesomeComponent>
+        </LoadingComponent>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import MainNav from "../components/MainNav";
 import "../css/timer.css";
 import ms from "pretty-ms";
+import logo from "../images/GGWgoGetWork.png"
 import React,{Component} from "react";
 
 
@@ -21,13 +22,16 @@ class Timer extends Component {
 
     return (
       <div className="container">
+      <div className="topBanner">
+        <img className="timerlogo" src={logo} alt="logo" />
+      </div>
         <div className="circlebutton">
           <div className="task">
             <h1>Task: {currentTask && currentTask.task}</h1>
           </div>
           <div className="times">
+            <h2>Timer</h2>
             <h3>
-              timer:{" "}
               {ms(time, {
                 colonNotation: true,
                 secondsDecimalDigits: 0
