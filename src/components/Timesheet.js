@@ -1,6 +1,6 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
-import {withLoading} from "./Loading";
+import { withLoading } from "./Loading";
 
 const ms = require("pretty-ms");
 
@@ -137,16 +137,26 @@ class Timesheet extends Component {
 
   timeToday = (instanceList, date) => {
     const now = new Date(date);
-    const now1 = new Date();
-    //console.log(now);
-    //console.log(now1);
+    const endDay = now.getTime() + 86400000;
+    const endDayTime = new Date(endDay);
     const startOfDay = new Date(
       now.getFullYear(),
       now.getMonth(),
       now.getDate()
     );
+    const endOfDay = new Date(
+      endDayTime.getFullYear(),
+      endDayTime.getMonth(),
+      endDayTime.getDate()
+    );
     const dayCheck = startOfDay.getTime();
-    const test = instanceList.filter(value => value.timeStarted > dayCheck);
+    const endDayCheck = endOfDay.getTime();
+    console.log(dayCheck);
+    console.log(endDayCheck);
+    console.log(dayCheck);
+    const test = instanceList.filter(
+      value => value.timeStarted > dayCheck && value.timeStarted < endDayCheck
+    );
     //console.log(test);
     const array = test.map(value => value.timeRan);
     const arrSum = array.reduce((a, b) => a + b, 0);
