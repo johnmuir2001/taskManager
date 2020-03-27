@@ -64,6 +64,39 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 1200px) {
+    .times{
+        background-color: rgb(177, 224, 157);
+        border: 5px solid #7ED857;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        height: 250px;
+        width: 250px;
+    }
+
+
+.topBanner {
+    border-bottom-left-radius: 50% ;
+    border-bottom-right-radius: 50%;
+    height: 100px;
+    width: 100vw;
+    background-color: #7ED857;
+}
+
+.timerlogo {
+    position: relative;
+    height: auto;
+    width: 70px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin-top: 15px;
+}
+}
+
+
 @media only screen and (max-width: 600px) {
     .times{
         background-color: rgb(177, 224, 157);
