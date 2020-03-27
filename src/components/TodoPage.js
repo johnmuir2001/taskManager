@@ -35,7 +35,7 @@ class TodoPage extends Component {
                         <button className={this.state.todo ? "buttonstyle hidden" : "buttonstyle"} onClick={this.doneButton}>Done</button>
                     </div>
                     {todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1 className="todoTitle">Tasks to do</h1>}
-                    <TaskInput todo={todo} done={done} setActive={setActive}/>
+                    <TaskInput todo={todo} done={done} setActive={setActive} />
                     <div className="mainnavcontainer">
                         <MainNav/>
                     </div>

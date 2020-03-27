@@ -20,6 +20,7 @@ class App extends Component {
 
   setActive = active => {
     this.setState({ activeTask: active });
+    this.resetTimer()
   };
 
   startTimer = () => {
@@ -62,7 +63,7 @@ class App extends Component {
               <Route path="/timesheet" component={Timesheet} />
               <Route
                 path="/TodoPage"
-                render={() => <TodoPage setActive={this.setActive} />}
+                render={() => <TodoPage setActive={this.setActive}/>}
               />
               <Route
                 path="/timer"
