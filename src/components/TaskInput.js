@@ -6,10 +6,12 @@ class TaskInput extends Component {
   state = {
     list: [],
     currentInput: "",
-    doneList: []
+    doneList: [],
+    loading: false
   };
 
   componentDidMount = async () => {
+    this.setState({ loading: true})
     const response = await fetch("https://whispering-temple-37575.herokuapp.com/tasks", {
     method: "GET",
     headers: {
@@ -28,7 +30,7 @@ class TaskInput extends Component {
       arr.push(task)
     }
   })
-  this.setState({list: arr, doneList: doneArr})
+  this.setState({list: arr, doneList: doneArr, loading: false})
   }
 
   addHandler = e => {
@@ -129,12 +131,12 @@ render () {
           <button className="plus" onClick={this.submit}>+</button>
         </div>}
         <div className="inputcontainer">
+          <h1 className={this.state.loading ? "loading" : "loading hidden"}>Loading Tasks...</h1>
       {this.props.todo ? 
       this.state.doneList.map((savedInput, index) => {
         return (
-          
             <div className="donewrapper" key={index}>
-              <p>{savedInput.task}</p>
+              <p className="taskName">{savedInput.task}</p>
               <button className="donedelete" onClick={() => this.doneDelete(index)} >X</button>
             </div>
               )
@@ -149,13 +151,11 @@ render () {
             <button className="taskbutton delete" onClick={() => this.taskDelete(index)} >X</button>
           </div>
           </div>
-          
         );
       })}
     </div>
     <div className="fade"></div>
     </div>
-    
   );
   }
 }
