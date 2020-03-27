@@ -1,3 +1,4 @@
+import MainNav from "../components/MainNav";
 import React, { Component } from "react";
 const ms = require("pretty-ms");
 
@@ -5,33 +6,17 @@ class Timesheet extends Component {
   state = {
     Timesheet: [{ task: "", time: "" }],
     OrderTimesheet: [],
-    getTasks: false
+    gotTasks: false
   };
 
-  login = e => {
-    e.preventDefault();
-    let databody = {
-      email: "test@this.com",
-      password: "thispotato"
-    };
-    fetch("https://whispering-temple-37575.herokuapp.com/users/login", {
-      method: "POST",
-      body: JSON.stringify(databody),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        localStorage.setItem("token", data.token);
-      });
-  };
+  componentDidMount() {
+    this.showTasks();
+  }
 
   showTasks = async e => {
     const tempHeader = new Headers();
     const headerToken = localStorage.token;
     tempHeader.append("Authorization", `${headerToken}`);
-    e.preventDefault();
     await fetch("https://whispering-temple-37575.herokuapp.com/tasks", {
       headers: tempHeader,
       method: "GET"
@@ -39,7 +24,6 @@ class Timesheet extends Component {
       .then(res => res.json())
       .then(data => this.setState({ Timesheet: data }));
 
-    console.log(this.state.Timesheet);
     const order = [];
     let x;
     let y;
@@ -47,46 +31,86 @@ class Timesheet extends Component {
       for (y = 0; y < this.state.Timesheet[x].runTime.length; y++) {
         let temp = this.state.Timesheet[x].runTime[y];
         temp["task"] = this.state.Timesheet[x].task;
-        console.log(temp);
         order.push(temp);
       }
     }
     order.sort((a, b) => (a.timeStarted < b.timeStarted ? 1 : -1));
     this.setState({ OrderTimesheet: order, gotTasks: true });
-    console.log(this.state.OrderTimesheet);
   };
 
   dateCheck = (e, index) => {
     let date = new Date(e);
-    let day = date.getDay();
-    console.log(e);
-    console.log(day);
+    //let day = date.getDay();
     if (index !== this.state.OrderTimesheet.length - 1 && index !== 0) {
       if (
         new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
         new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
       ) {
-        console.log("Yes");
-        return <h2>{new Date(date).toUTCString()}</h2>;
+        return (
+          <h2>
+            {new Date(date).toUTCString()}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(date).toUTCString()
+            )}
+          </h2>
+        );
       }
     }
+  };
+
+  timeToday = (instanceList, date) => {
+    let arrSum = "";
+    const now = new Date(date);
+    const startOfDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+    const dayCheck = startOfDay.getTime();
+    const test = instanceList.filter(value => value.timeStarted > dayCheck);
+    console.log(test);
+    const array = test.map(value => value.timeRan);
+    console.log(array);
+    arrSum = array.reduce((a, b) => a + b, 0);
+    console.log(arrSum);
+    return arrSum;
+  };
+
+  timeWeek = instanceList => {
+    const now = new Date();
+    const startOfDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+    const dayCheck = startOfDay.getTime();
+    let day = now.getDay();
+    if (day === 0) {
+      day = 7;
+    }
+    const test = instanceList.filter(
+      value => (value.timeStarted > dayCheck) - (day - 1) * 86400000
+    );
+    const array = test.map(value => value.timeRan);
+    const arrSum = array.reduce((a, b) => a + b, 0);
+    return arrSum;
   };
 
   render() {
     return (
       <div className="toDoList">
-        <button onClick={this.login}>Login</button>
-        <button onClick={this.showTasks}>Show Tasks</button>
-        <button
-          onClick={() => {
-            console.log(this.state.Timesheet);
-          }}
-        >
-          Log
-        </button>
+        {/* <button onClick={this.showTasks}>Show Tasks</button> */}
+        <h3>
+          This week's total time: {this.timeWeek(this.state.OrderTimesheet)}
+        </h3>
         {this.state.gotTasks ? (
           <h2>
-            {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}
+            {new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()}{" "}
+            {this.timeToday(
+              this.state.OrderTimesheet,
+              new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+            )}
           </h2>
         ) : null}
         {this.state.OrderTimesheet.map((num, index) => {
@@ -103,12 +127,10 @@ class Timesheet extends Component {
                   secondsDecimalDigits: 0
                 })}
               </p>
-              {/* <button className="delete" onClick={() => this.delete(index)}>
-                x
-              </button> */}
             </div>
           );
         })}
+        <MainNav />
       </div>
     );
   }
