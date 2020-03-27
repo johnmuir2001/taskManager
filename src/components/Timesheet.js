@@ -1,5 +1,7 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
+import {withLoading} from "./Loading";
+
 const ms = require("pretty-ms");
 
 class Timesheet extends Component {
@@ -206,4 +208,4 @@ class Timesheet extends Component {
   }
 }
 
-export default Timesheet;
+export default withLoading(Timesheet);

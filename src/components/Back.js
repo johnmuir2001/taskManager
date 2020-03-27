@@ -3,9 +3,9 @@ import Login from "./Login"
 
 const Back = () => {
   return (
-    <div className="main-container">
-      <Login />
-    </div>
+      <div className="main-container">
+        <Login />
+      </div>
   );
 };
 

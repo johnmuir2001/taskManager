@@ -133,6 +133,21 @@
         font-weight: 600;
         color: #362245;
     }
+
+    .donewrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        background-color: rgb(212, 169, 212);
+        width: auto;
+        margin: 20px 25vw;
+        padding: 5px;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #362245;
+    }
+
     .taskbutton {
         background-color:  #7ED857;
         border-color:#7ED857;

@@ -141,7 +141,7 @@ class TaskInput extends Component {
   };
 
   render() {
-    const { list, doneList, currentInput } = this.state
+    const { list, doneList, currentInput, loading } = this.state
     const { todo, setActive } = this.props
 
     return (
@@ -161,7 +161,7 @@ class TaskInput extends Component {
           </div>
         )}
         <div className="inputcontainer">
-        <h1 className={this.state.loading ? "loading" : "loading hidden"}>Loading Tasks...</h1>
+          <h1 className={loading ? "loading" : "loading hidden"}>Loading Tasks...</h1>
           {todo
             ? doneList.map((savedInput, index) => {
                 return (
