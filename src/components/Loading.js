@@ -27,7 +27,6 @@ export const withLoading = Component => (
 
     render() {
       const { loading } = this.state
-      const { children } = this.props
 
       return (
         <>

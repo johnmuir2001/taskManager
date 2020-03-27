@@ -24,7 +24,7 @@ class TodoPage extends Component {
     }
 
     render (){
-        const { setActive,time,activeTask } = this.props
+        const { setActive,time,activeTask, stopTimer,resetTimer } = this.props
         const { todo, done} = this.state
         return (
             <div className="todocontainer">
@@ -35,7 +35,7 @@ class TodoPage extends Component {
                         <button className={this.state.todo ? "buttonstyle hidden" : "buttonstyle"} onClick={this.doneButton}>Done</button>
                     </div>
                     {todo ? <h1 className="todoTitle">Completed tasks</h1> : <h1 className="todoTitle">Tasks to do</h1>}
-                    <TaskInput todo={todo} done={done} setActive={setActive} time={time} activeTask={activeTask}/>
+                    <TaskInput todo={todo} done={done} setActive={setActive} time={time} activeTask={activeTask} stopTimer={stopTimer} resetTimer={resetTimer}/>
                     <div className="mainnavcontainer">
                         <MainNav/>
                     </div>
