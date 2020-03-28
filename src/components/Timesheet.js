@@ -79,8 +79,8 @@ class Timesheet extends Component {
       ) {
         return (
           <div>
-            <h2>{"Today"}</h2>
-            <h2>
+            <h2 className="date">{"Today"}</h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -97,9 +97,9 @@ class Timesheet extends Component {
         }`
       ) {
         return (
-          <div>
+          <div className="date">
             <h2>{"Yesterday"}</h2>
-            <h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -109,13 +109,13 @@ class Timesheet extends Component {
         );
       } else {
         return (
-          <div>
-            <h2>
+          <div className="date">
+            <h2 className="date">
               {`${days[date.getDay()]}, ${date.getDate()} ${
                 months[date.getMonth()]
               }`}
             </h2>
-            <h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -133,12 +133,12 @@ class Timesheet extends Component {
     ) {
       return (
         <div>
-          <h2>
+          <h2 className="date">
             {`${days[date.getDay()]}, ${date.getDate()} ${
               months[date.getMonth()]
             }`}
           </h2>
-          <h2>
+          <h2 className="time">
             {this.timeToday(
               this.state.OrderTimesheet,
               new Date(date).toUTCString()

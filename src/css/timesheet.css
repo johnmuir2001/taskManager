@@ -36,14 +36,21 @@
     height: 60vh;
     
 }
+.date{
+    margin-left: 5px;
+    color: #362245;
+}
+.time{
+  display: none;
+  }
+
+
 .Task {
      background-color: #7ED857;
      width: 100vw;
-     
      }
 
-.dailyTasks
-   {
+.dailyTasks{
     background-color: whitesmoke;
     }
 
@@ -56,9 +63,8 @@
     font-weight: 800;
     color:#362245; 
     padding-left: 10px;
-    
-    
-}
+    }
+
 .timesheetnav {
     overflow: hidden;
     position: fixed;
