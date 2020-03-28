@@ -1,6 +1,8 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
-import { withLoading } from "./Loading";
+import '../css/timesheet.css'
+import logo from "../images/GGWgoGetWork.png";
+import {withLoading} from "./Loading";
 
 const ms = require("pretty-ms");
 
@@ -77,8 +79,8 @@ class Timesheet extends Component {
       ) {
         return (
           <div>
-            <h2>{"Today"}</h2>
-            <h2>
+            <h2 className="date">{"Today"}</h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -95,9 +97,9 @@ class Timesheet extends Component {
         }`
       ) {
         return (
-          <div>
+          <div className="date">
             <h2>{"Yesterday"}</h2>
-            <h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -107,13 +109,13 @@ class Timesheet extends Component {
         );
       } else {
         return (
-          <div>
-            <h2>
+          <div className="date">
+            <h2 className="date">
               {`${days[date.getDay()]}, ${date.getDate()} ${
                 months[date.getMonth()]
               }`}
             </h2>
-            <h2>
+            <h2 className="time">
               {this.timeToday(
                 this.state.OrderTimesheet,
                 new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
@@ -131,12 +133,12 @@ class Timesheet extends Component {
     ) {
       return (
         <div>
-          <h2>
+          <h2 className="date">
             {`${days[date.getDay()]}, ${date.getDate()} ${
               months[date.getMonth()]
             }`}
           </h2>
-          <h2>
+          <h2 className="time">
             {this.timeToday(
               this.state.OrderTimesheet,
               new Date(date).toUTCString()
@@ -204,7 +206,7 @@ class Timesheet extends Component {
   getTotalTime = () => {
     if (this.timeWeek(this.state.OrderTimesheet) > 1000) {
       return (
-        <h3>
+        <h3 className="total">
           This weeks total time:{" "}
           {ms(this.timeWeek(this.state.OrderTimesheet), {
             verbose: true,
@@ -213,19 +215,28 @@ class Timesheet extends Component {
         </h3>
       );
     } else {
-      return <h3>This weeks total time is: 0</h3>;
+      return <h3 className="total">This weeks total time is: 0</h3>;
     }
   };
 
   render() {
     return (
-      <div className="toDoList">
+      
+      <div className="timeSheetList">
+        <img className="todologo" src={logo} alt="logo" />
+        <div className="timeSheetHeader">
+        <h1>Timesheet</h1>
         {/* <button onClick={this.showTasks}>Show Tasks</button> */}
+        {/* <h3 className="total">
+          
+        </h3> */}
         {this.getTotalTime()}
+        <div className="taskContainer">
         {this.state.OrderTimesheet.map((num, index) => {
           return (
             <div key={index} className="Task">
               {this.dateCheck(num.timeStarted, index)}
+              <div className ="dailyTasks">
               <h4 className="listContent">{num.task}</h4>
               {this.getTime(num.timeStarted)}
               <p className="listContent">
@@ -234,11 +245,18 @@ class Timesheet extends Component {
                   secondsDecimalDigits: 0
                 })}
               </p>
+              </div>
             </div>
+            
           );
         })}
+        </div >
+        <div className="timesheetnav">
         <MainNav />
+        </div>
+        </div>
       </div>
+   
     );
   }
 }

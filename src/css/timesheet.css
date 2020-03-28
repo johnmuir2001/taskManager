@@ -1,0 +1,73 @@
+.timeSheetList {
+        border-bottom-left-radius: 50% ;
+        border-bottom-right-radius: 50%;
+        height: 150px;
+        width: auto;
+        background-color: #7ED857;
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+        } 
+
+.timeSheetHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    height: 60px;
+    width: 300px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color:  #7ED857;
+    border-width: 3px;
+    margin-bottom: 30px;
+}
+.taskContainer {
+    
+    height: 1000px;
+    width: 90vw;
+    overflow: auto;
+    height: 60vh;
+    
+}
+.date{
+    margin-left: 5px;
+    color: #362245;
+}
+.time{
+  display: none;
+  }
+
+
+.Task {
+     background-color: #7ED857;
+     width: 100vw;
+     }
+
+.dailyTasks{
+    background-color: whitesmoke;
+    }
+
+.listContent {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 800;
+    color:#362245; 
+    padding-left: 10px;
+    }
+
+.timesheetnav {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
