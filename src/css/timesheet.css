@@ -72,7 +72,7 @@
 }
 @media only screen and (max-width: 600px) {
     .timeSheetList{
-        height: 110px;
+        height: 130px;
     }
 
   .timeSheetHeader {
