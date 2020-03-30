@@ -96,7 +96,6 @@ class TaskInput extends Component {
   //delete task in done
   doneDelete = async index => {
     let doneTask = [...this.state.doneList];
-    //the array containing an array containing an object
     let remove = doneTask.splice(index, 1);
     this.setState({ doneList: doneTask });
     //deletes task from database
@@ -113,17 +112,12 @@ class TaskInput extends Component {
   };
 
   //move tasks to done
-  doneTasks = async index => {
-    const { time, activeTask, stopTimer,resetTimer} = this.props;
-    console.log(activeTask);
+  doneTasks = async (nowTask, index) => {
+    const { time, stopTimer,resetTimer} = this.props;
     let storeDone = [...this.state.doneList];
-    //so we need to push the task we want from the first array
-    //first we need to get it.
     let currentTasks = [...this.state.list];
     let task = currentTasks.splice(index, 1)[0];
-    //then we need to push it
     storeDone.push(task);
-    //save and run this to see if it works
     this.setState({ doneList: storeDone, list: currentTasks });
     await fetch(
       `https://whispering-temple-37575.herokuapp.com/tasks/${task._id}`,
@@ -138,9 +132,9 @@ class TaskInput extends Component {
         })
       }
     );
-    if (task._id === activeTask.currentTask._id) {
+    if (task._id === nowTask.currentTask._id) {
       await fetch(
-        `https://whispering-temple-37575.herokuapp.com/tasks/instance/${activeTask.currentTask._id}`,
+        `https://whispering-temple-37575.herokuapp.com/tasks/instance/${nowTask.currentTask._id}`,
         {
           method: "PATCH",
           headers: {
