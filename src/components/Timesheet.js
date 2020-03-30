@@ -97,7 +97,7 @@ class Timesheet extends Component {
         }`
       ) {
         return (
-          <div className="date">
+          <div>
             <h2>{"Yesterday"}</h2>
             <h2 className="time">
               {this.timeToday(
@@ -109,7 +109,7 @@ class Timesheet extends Component {
         );
       } else {
         return (
-          <div className="date">
+          <div>
             <h2 className="date">
               {`${days[date.getDay()]}, ${date.getDate()} ${
                 months[date.getMonth()]

@@ -34,7 +34,7 @@
     height: 1000px;
     width: 90vw;
     overflow: auto;
-    height: 60vh;
+    height: 55vh;
     
 }
 .date{
@@ -71,4 +71,35 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .timeSheetHeader{
+        margin-top: 50px;
+    }
+    .taskContainer{
+    overflow: auto;
+    height: 40vh;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .taskContainer{
+        overflow: auto;
+        height: 30vh;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .timeSheetList {
+        height: 110px;
+    }
+    .total{
+        width: 80%;
+    }
+    .taskContainer{
+        overflow: auto;
+        height: 20vh;
+    }
+    .taskContainer{
+        width: 80%;
+    }
 }
