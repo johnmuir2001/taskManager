@@ -1,8 +1,8 @@
 import MainNav from "../components/MainNav";
 import React, { Component } from "react";
-import '../css/timesheet.css'
+import "../css/timesheet.css";
 import logo from "../images/GGWgoGetWork.png";
-import {withLoading} from "./Loading";
+import { withLoading } from "./Loading";
 
 const ms = require("pretty-ms");
 
@@ -81,9 +81,14 @@ class Timesheet extends Component {
           <div>
             <h2 className="date">{"Today"}</h2>
             <h2 className="time">
-              {this.timeToday(
-                this.state.OrderTimesheet,
-                new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+              {ms(
+                this.timeToday(
+                  this.state.OrderTimesheet,
+                  new Date(
+                    this.state.OrderTimesheet[0].timeStarted
+                  ).toUTCString()
+                ),
+                { verbose: true, secondsDecimalDigits: 0 }
               )}
             </h2>
           </div>
@@ -98,11 +103,16 @@ class Timesheet extends Component {
       ) {
         return (
           <div>
-            <h2>{"Yesterday"}</h2>
+            <h2 className="date">{"Yesterday"}</h2>
             <h2 className="time">
-              {this.timeToday(
-                this.state.OrderTimesheet,
-                new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+              {ms(
+                this.timeToday(
+                  this.state.OrderTimesheet,
+                  new Date(
+                    this.state.OrderTimesheet[0].timeStarted
+                  ).toUTCString()
+                ),
+                { verbose: true, secondsDecimalDigits: 0 }
               )}
             </h2>
           </div>
@@ -116,36 +126,71 @@ class Timesheet extends Component {
               }`}
             </h2>
             <h2 className="time">
-              {this.timeToday(
-                this.state.OrderTimesheet,
-                new Date(this.state.OrderTimesheet[0].timeStarted).toUTCString()
+              {ms(
+                this.timeToday(
+                  this.state.OrderTimesheet,
+                  new Date(
+                    this.state.OrderTimesheet[0].timeStarted
+                  ).toUTCString()
+                ),
+                { verbose: true, secondsDecimalDigits: 0 }
               )}
             </h2>
           </div>
         );
       }
-    }
-    if (
-      index < this.state.OrderTimesheet.length &&
-      index !== 0 &&
-      new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
-        new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
-    ) {
-      return (
-        <div>
-          <h2 className="date">
-            {`${days[date.getDay()]}, ${date.getDate()} ${
-              months[date.getMonth()]
-            }`}
-          </h2>
-          <h2 className="time">
-            {this.timeToday(
-              this.state.OrderTimesheet,
-              new Date(date).toUTCString()
-            )}
-          </h2>
-        </div>
-      );
+    } else if (index === 1) {
+      if (
+        `${days[date.getDay()]}, ${date.getDate()} ${
+          months[date.getMonth()]
+        }` ===
+        `${days[today.getDay()]}, ${today.getDate() - 1} ${
+          months[today.getMonth()]
+        }`
+      ) {
+        return (
+          <div>
+            <h2 className="date">{"Yesterday"}</h2>
+            <h2 className="time">
+              {ms(
+                this.timeToday(
+                  this.state.OrderTimesheet,
+                  new Date(
+                    this.state.OrderTimesheet[0].timeStarted
+                  ).toUTCString()
+                ),
+                { verbose: true, secondsDecimalDigits: 0 }
+              )}
+            </h2>
+          </div>
+        );
+      }
+    } else {
+      if (
+        index < this.state.OrderTimesheet.length &&
+        index !== 0 &&
+        new Date(this.state.OrderTimesheet[index].timeStarted).getDay() !==
+          new Date(this.state.OrderTimesheet[index - 1].timeStarted).getDay()
+      ) {
+        return (
+          <div>
+            <h2 className="date">
+              {`${days[date.getDay()]}, ${date.getDate()} ${
+                months[date.getMonth()]
+              }`}
+            </h2>
+            <h2 className="time">
+              {ms(
+                this.timeToday(
+                  this.state.OrderTimesheet,
+                  new Date(date).toUTCString()
+                ),
+                { verbose: true, secondsDecimalDigits: 0 }
+              )}
+            </h2>
+          </div>
+        );
+      }
     }
   };
 
@@ -221,42 +266,39 @@ class Timesheet extends Component {
 
   render() {
     return (
-      
       <div className="timeSheetList">
         <img className="todologo" src={logo} alt="logo" />
         <div className="timeSheetHeader">
-        <h1>Timesheet</h1>
-        {/* <button onClick={this.showTasks}>Show Tasks</button> */}
-        {/* <h3 className="total">
+          <h1>Timesheet</h1>
+          {/* <button onClick={this.showTasks}>Show Tasks</button> */}
+          {/* <h3 className="total">
           
         </h3> */}
-        {this.getTotalTime()}
-        <div className="taskContainer">
-        {this.state.OrderTimesheet.map((num, index) => {
-          return (
-            <div key={index} className="Task">
-              {this.dateCheck(num.timeStarted, index)}
-              <div className ="dailyTasks">
-              <h4 className="listContent">{num.task}</h4>
-              {this.getTime(num.timeStarted)}
-              <p className="listContent">
-                {ms(num.timeRan, {
-                  verbose: true,
-                  secondsDecimalDigits: 0
-                })}
-              </p>
-              </div>
-            </div>
-            
-          );
-        })}
-        </div >
-        <div className="timesheetnav">
-        <MainNav />
-        </div>
+          {this.getTotalTime()}
+          <div className="taskContainer">
+            {this.state.OrderTimesheet.map((num, index) => {
+              return (
+                <div key={index} className="Task">
+                  {this.dateCheck(num.timeStarted, index)}
+                  <div className="dailyTasks">
+                    <h4 className="listContent">{num.task}</h4>
+                    {this.getTime(num.timeStarted)}
+                    <p className="listContent">
+                      {ms(num.timeRan, {
+                        verbose: true,
+                        secondsDecimalDigits: 0
+                      })}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="timesheetnav">
+            <MainNav />
+          </div>
         </div>
       </div>
-   
     );
   }
 }
