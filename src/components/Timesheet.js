@@ -252,7 +252,7 @@ class Timesheet extends Component {
     if (this.timeWeek(this.state.OrderTimesheet) > 1000) {
       return (
         <h3 className="total">
-          This weeks total time:{" "}
+           Total weekly time:{" "}
           {ms(this.timeWeek(this.state.OrderTimesheet), {
             verbose: true,
             secondsDecimalDigits: 0

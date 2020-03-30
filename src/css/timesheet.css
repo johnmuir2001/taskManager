@@ -39,7 +39,11 @@
   margin-left: 5px;
   color: #362245;
 }
-
+.time {
+    margin-left: 5px;
+    color: #362245;
+    
+}
 .Task {
   background-color: #7ed857;
   width: 100vw;
@@ -67,18 +71,26 @@
   width: 100%;
 }
 @media only screen and (max-width: 600px) {
+    .timeSheetList{
+        height: 110px;
+    }
+
   .timeSheetHeader {
     margin-top: 50px;
   }
   .taskContainer {
-    overflow: auto;
+     overflow: auto;
     height: 40vh;
   }
 }
 @media only screen and (max-width: 500px) {
+    .timeSheetList{
+        height: 110px;
+    }
   .taskContainer {
     overflow: auto;
     height: 30vh;
+    
   }
 }
 
