@@ -135,7 +135,12 @@
     color: white;
     font-weight: 700;
 }
-
+@media only screen and (max-height:1000px) {
+    .inputcontainer{
+      overflow: auto;
+      height:40vh;
+    }
+}
 @media only screen and (max-width: 1200px) {
 
     
