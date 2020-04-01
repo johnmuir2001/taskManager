@@ -67,6 +67,8 @@ class App extends Component {
       );
     }
     this.setActive(task)
+    this.stopTimer()
+    this.resetTimer()
   };
 
   componentDidMount() {
