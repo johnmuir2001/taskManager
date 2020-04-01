@@ -70,6 +70,12 @@
   bottom: 0;
   width: 100%;
 }
+@media only screen and (max-height:1000px) {
+  .taskContainer {
+    overflow: auto;
+    height: 45vh;
+  }
+}
 @media only screen and (max-width: 600px) {
     .timeSheetList{
         height: 130px;
