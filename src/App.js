@@ -49,7 +49,7 @@ class App extends Component {
   };
 
   //This should send the time in state to the current task in the database
-  sendTime = (task) => {
+  sendTime = task => {
     if (this.state.activeTask !== null && this.state.time > 0) {
       fetch(
         `https://whispering-temple-37575.herokuapp.com/tasks/instance/${this.state.activeTask.currentTask._id}`,
@@ -66,9 +66,9 @@ class App extends Component {
         }
       );
     }
-    this.setActive(task)
-    this.stopTimer()
-    this.resetTimer()
+    this.setActive(task);
+    this.stopTimer();
+    this.resetTimer();
   };
 
   componentDidMount() {
