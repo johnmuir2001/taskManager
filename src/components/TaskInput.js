@@ -113,7 +113,7 @@ class TaskInput extends Component {
 
   //move tasks to done
   doneTasks = async (nowTask, index) => {
-    const { time, stopTimer,resetTimer} = this.props;
+    const { time, stopTimer, resetTimer, activeTask } = this.props;
     let storeDone = [...this.state.doneList];
     let currentTasks = [...this.state.list];
     let task = currentTasks.splice(index, 1)[0];
@@ -132,7 +132,7 @@ class TaskInput extends Component {
         })
       }
     );
-    if (task._id === nowTask.currentTask._id) {
+    if (task._id === activeTask.currentTask._id) {
       await fetch(
         `https://whispering-temple-37575.herokuapp.com/tasks/instance/${nowTask.currentTask._id}`,
         {
@@ -147,8 +147,8 @@ class TaskInput extends Component {
           })
         }
       );
-    stopTimer()
-    resetTimer()
+      stopTimer();
+      resetTimer();
     }
   };
 
@@ -171,11 +171,11 @@ class TaskInput extends Component {
         })
       }
     );
-  }
+  };
 
   render() {
-    const { list, doneList, currentInput, loading } = this.state
-    const { todo, setActive } = this.props
+    const { list, doneList, currentInput, loading } = this.state;
+    const { todo, setActive, sendTime } = this.props;
 
     return (
       <div>
@@ -194,14 +194,21 @@ class TaskInput extends Component {
           </div>
         )}
         <div className="inputcontainer">
-          <h1 className={loading ? "loading" : "loading hidden"}>Loading Tasks...</h1>
+          <h1 className={loading ? "loading" : "loading hidden"}>
+            Loading Tasks...
+          </h1>
           {todo
             ? doneList.map((savedInput, index) => {
                 return (
                   <div className="donewrapper" key={index}>
                     <p className="taskName">{savedInput.task}</p>
                     <div className="donebuttonwrapper">
-                      <button className="backButton" onClick={() => this.backButton(index)}>Back</button>
+                      <button
+                        className="backButton"
+                        onClick={() => this.backButton(index)}
+                      >
+                        Back
+                      </button>
                       <button
                         className="donedelete"
                         onClick={() => this.doneDelete(index)}
@@ -219,6 +226,7 @@ class TaskInput extends Component {
                   doneTasks={this.doneTasks}
                   taskDelete={this.taskDelete}
                   setActive={setActive}
+                  sendTime={sendTime}
                 />
               ))}
         </div>
